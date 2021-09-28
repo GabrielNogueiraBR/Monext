@@ -1,7 +1,17 @@
-const server = require('express')();
+import express from 'express';
+import path from 'path';
 
-server.get('/', (req, res) => {
-  res.send('Hello World');
+// eslint-disable-next-line no-underscore-dangle
+const __dirname = path.resolve();
+const app = express();
+const port = 3000;
+
+app.use(express.static(`${__dirname}/src/views`));
+
+app.get('/', (req, res) => {
+  res.send('Hello World!');
 });
 
-server.listen(3000);
+app.listen(port, () => {
+  console.log(`Server is running on http:localhost:${port}`);
+});

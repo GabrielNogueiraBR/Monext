@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "./src/server.js",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GabrielNogueiraBR/Monext.git"
   },
+  
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -14,7 +16,7 @@
   },
   "homepage": "https://github.com/GabrielNogueiraBR/Monext#readme",
   "scripts": {
-    "dev": "nodemon './server.js'",
+    "dev": "nodemon -e 'js,html,css' './server.js'",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix . --ignore-pattern './node_modules'",
     "lint-staged": "lint-staged",
@@ -25,6 +27,9 @@
     "*.js": [
       "npm run lint:fix"
     ]
+  },
+  "nodemonConfig": {
+    "ext": "js,html,css"
   },
   "dependencies": {
     "express": "^4.17.1",
