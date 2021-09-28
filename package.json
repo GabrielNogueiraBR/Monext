@@ -8,7 +8,6 @@
     "type": "git",
     "url": "git+https://github.com/GabrielNogueiraBR/Monext.git"
   },
-  
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -36,8 +35,6 @@
     "socket.io": "^4.2.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^13.2.0",
-    "@commitlint/config-conventional": "^13.2.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
