@@ -1,5 +1,5 @@
-import express from 'express';
-import path from 'path';
+const express = reuire('express');
+const path = require('path');
 
 // eslint-disable-next-line no-underscore-dangle
 const __dirname = path.resolve();
