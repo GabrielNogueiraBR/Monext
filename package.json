@@ -1,0 +1,50 @@
+{
+  "name": "monext",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GabrielNogueiraBR/Monext.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GabrielNogueiraBR/Monext/issues"
+  },
+  "homepage": "https://github.com/GabrielNogueiraBR/Monext#readme",
+  "scripts": {
+    "dev": "nodemon -e 'js,html,css' './server.js'",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint --fix . --ignore-pattern './node_modules'",
+    "lint-staged": "lint-staged",
+    "commit": "cz",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run lint:fix"
+    ]
+  },
+  "nodemonConfig": {
+    "ext": "js,html,css"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^4.2.0"
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.24.2",
+    "husky": "^7.0.2",
+    "lint-staged": "^11.1.2",
+    "nodemon": "^2.0.13"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
