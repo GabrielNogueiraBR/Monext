@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "./src/server.js",
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GabrielNogueiraBR/Monext.git"
