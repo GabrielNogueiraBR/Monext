@@ -14,7 +14,7 @@
   },
   "homepage": "https://github.com/GabrielNogueiraBR/Monext#readme",
   "scripts": {
-    "dev": "nodemon -e 'js,html,css' './server.js'",
+    "dev": "nodemon",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix . --ignore-pattern './node_modules'",
     "lint-staged": "lint-staged",
