@@ -11,11 +11,16 @@
             color: tomato;
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
 </head>
 <body>
     <div>
         <h1>Página inicial</h1>
         <p>Esta página é o index, ou seja, a página principal.</p>
     </div>
+
+    <script type="text/javascript">
+        const socket = io('http://localhost:3000');
+    </script>
 </body>
 </html>

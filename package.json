@@ -30,6 +30,7 @@
     "ext": "js,html,css"
   },
   "dependencies": {
+    "ejs": "^3.1.6",
     "express": "^4.17.1",
     "socket.io": "^4.2.0"
   },
