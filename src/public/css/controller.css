@@ -3,17 +3,19 @@
     padding: 0;
 }
 
-#button-left, 
-#button-right {
+.button-left, 
+.button-right {
     width: 200px;
     height: 30px;
     margin: 20% 10% 20% 10%;
     border: 1px solid;
     border-radius: 10px;
+    margin-left: 300px;
+    margin-right: 300px;
 }
 
-#button-left:hover, 
-#button-right:hover {
+.button-left:hover, 
+.button-right:hover {
     background-color: grey;
     cursor: pointer;
 }

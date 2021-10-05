@@ -5,17 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/controller.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
     <title>Monext Controller</title>
 </head>
 <body>
-    <div class="buttons">
-        <button id="button-left"><p> < </p></button>
-        <button id="button-right"><p> > </p></button>
-    </div>
 
-    <script type="text/javascript">
+        <button type="button" class="button-left"><p> < </p></button>
+        <span class="testeController">0</span>
+        <button type="button" class="button-right"><p> > </p></button>
+
+   
+   
+   <script type="text/javascript">
         const socket = io('http://localhost:3000');
     </script>
+    <script src="../js/controller.js"></script>
 </body>
 </html>
