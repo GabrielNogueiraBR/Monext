@@ -21,6 +21,15 @@
 
     <script type="text/javascript">
         const socket = io('http://localhost:3000');
+
+        socket.on('connect',()=>{
+
+        })
+
+        socket.on('send-control',control=>{
+            console.log(control);
+        })
+
     </script>
 </body>
 </html>

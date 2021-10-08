@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 /* eslint-disable no-shadow */
-let teste = 1;
+let teste = 0;
 
 function atualizaController(teste) {
   $('.testeController').text(teste);
+  socket.emit('envia-para-servidor', teste);
 }
 
 $('.button-left').on('click', (event) => {
