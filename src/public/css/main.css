@@ -9,11 +9,28 @@ body{
    align-items: center;
    justify-content: center;
    height: 100vh;
+
+   background-color: #fff;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   transition: background 2s;
+}
+
+.container:before {
+   content:"";
+   position:absolute;
+   top:0;
+   bottom:0;
+   left:0;
+   right:0;
+   background-image:linear-gradient(to bottom right, #ff0b85b2, #ff9939cb);
 }
 
 .form-container {
-   width: 650px;
-   height: 85%;
+   width: 400px;
+   height: 50%;
+   max-height: 450px;
 
    margin: 0 50px;
    padding:20px 30px;
@@ -88,7 +105,7 @@ input:focus{
 .form-footer{
    display: flex;
    justify-content: end;
-   height: 10%;   
+   min-height: 30px;
 }
   
 button {
