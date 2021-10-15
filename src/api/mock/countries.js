@@ -1,4 +1,4 @@
-const data = [
+const countriesMocked = [
   {
     name: 'Brazil',
     iso2Code: 'BR',
@@ -81,4 +81,4 @@ const data = [
   },
 ];
 
-module.exports = data;
+module.exports = countriesMocked;

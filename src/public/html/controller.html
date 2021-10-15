@@ -32,15 +32,6 @@
 
     <div id:"test"><span class="testeController">0</span></div>
 
-    <script type="text/javascript">
-
-        const socket = io('http://localhost:3000');
-
-        socket.on('connect', () => {
-            socket.emit('client-connection', 'hello');
-        });
-
-    </script>
     <script src="../js/controller.js"></script>
 </body>
 

@@ -1,34 +1,38 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 /* eslint-disable no-shadow */
-let teste = 0;
+const socket = io();
 
-function atualizaController(teste) {
-  $('.testeController').text(teste);
-  socket.emit('envia-para-servidor', teste);
+let count = 0;
+
+function changeDisplayValue(value) {
+  $('.testeController').text(value);
+  // socket.emit('newDisplayValue', value);
 }
 
 $('.button-left').on('click', (event) => {
-  teste -= 1;
-  atualizaController(teste);
+  count -= 1;
+  changeDisplayValue(count);
 });
 
 $('.button-big-left').on('click', (event) => {
-  teste -= 2;
-  atualizaController(teste);
+  count -= 2;
+  changeDisplayValue(count);
 });
 
 $('.button-right').on('click', (event) => {
-  teste += 1;
-  atualizaController(teste);
+  count += 1;
+  changeDisplayValue(count);
 });
 
 $('.button-big-right').on('click', (event) => {
-  teste += 2;
-  atualizaController(teste);
+  count += 2;
+  changeDisplayValue(count);
 });
 
 $('.button-home').on('click', (event) => {
-  teste *= 0;
-  atualizaController(teste);
+  count *= 0;
+  changeDisplayValue(count);
 });
+
+// socket.on('changeDisplayValue', (value) => changeDisplayValue(value));

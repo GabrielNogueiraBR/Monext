@@ -1,4 +1,6 @@
-/* eslint-disable no-undef */
-document.addEventListener('DOMContentLoaded', () => {
-  io('http://localhost:3000');
+// eslint-disable-next-line no-undef
+const socket = io();
+
+socket.on('connect', () => {
+  socket.emit('client-connection');
 });
