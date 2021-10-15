@@ -21,7 +21,7 @@ app.set('views', path.join(__dirname, '/public', '/html')); // Specifiyng the vi
 app.engine('html', require('ejs').renderFile); // Template engine html
 
 // Rendering screens with countries data
-app.get('/country', (req, res) => {
+app.get('/home', (req, res) => {
   res.render('index.html');
 });
 
