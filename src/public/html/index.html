@@ -4,20 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <style>
-        div {
-            color: tomato;
-        }
-    </style>
+    <title>Monext</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Graduate&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
 </head>
 <body>
-    <div>
-        <h1>Página inicial</h1>
-        <p>Esta página é o index, ou seja, a página principal.</p>
-    </div>
+    <div class="container">
+        <form class="form-container">
+           <div class="monext-logo">
+              <img src="../assets/images/MonextLogo.svg" alt="Monext logo">
+           </div>
+           <div class="form-content">
+              
+              <label for="countrys" class="select-label">Select the Country</label>
+              <select id="countrys" name="countrys" class="select-countrys">
+                <option value="BR">Brazil</option>
+                <option value="JP">Japan</option>
+                <option value="MX">Mexico</option>
+                <option value="DE">Germany</option>
+              </select>
+  
+              <label for="conversion-value" style="margin-top:50px">Conversion Value</label>
+              <input id="conversion-value" type="text">
+           </div>
+           <div class="form-footer">
+              <button>Confirm</button>
+           </div>
+        </form>
+     </div>
 
     <script src="../js/script.js"></script>
 </body>
