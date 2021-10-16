@@ -1,0 +1,44 @@
+.controller-container{
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: center;
+   height: 100vh;
+   padding: 0 5%;
+   gap: 16px;
+}
+
+.button-control{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 20%;
+   height: 30%;
+   cursor: pointer;
+   border: solid 6px;
+   border-radius: 15px;
+   background-color: #fff;
+   transition: width 280ms, height 280ms, background-color 280ms;
+}
+
+.button-control:hover{
+   background-color: #ebebeb;
+   width: 21%;
+   height: 31%;
+}
+
+.control-double-arrows{
+   width: 50%;   
+}
+
+.control-arrows{
+   width: 30%;   
+}
+
+.left-direction{
+   transform: scaleX(-1);
+}
+
+.home-icon {
+   width: 45%;
+}
