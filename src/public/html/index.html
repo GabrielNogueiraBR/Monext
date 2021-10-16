@@ -13,7 +13,7 @@
 </head>
 <body>
    <div id="container" class="container">
-      <form class="form-container">
+      <form class="form-container" action="/controller" method="get">
          <div class="monext-logo">
             <img src="../assets/images/MonextLogo.svg" alt="Monext logo">
          </div>
@@ -28,7 +28,7 @@
             </select>
 
             <label for="conversion-value" style="margin-top:5%">Conversion Value</label>
-            <input id="conversion-value" type="text">
+            <input id="conversion-value" name="conversion-value" type="text">
          </div>
          <div class="form-footer">
             <button>Confirm</button>
