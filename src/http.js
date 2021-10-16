@@ -27,6 +27,10 @@ app.get('/home', (req, res) => {
 
 // Render controller, which uses to change countries screen
 app.get('/controller', (req, res) => {
+  // Receive country and conversion value
+  const dataConversion = req.query;
+
+  // Send data to service constructor (Construir a lista de objetos do tipo Country)
   res.render('controller.html');
 });
 
