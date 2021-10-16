@@ -1,38 +1,33 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/controller.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
-    <title>Monext Controller</title>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Monext Controller</title>
+   <link rel="stylesheet" href="../css/main.css">
+   <link rel="stylesheet" href="../css/controller.css">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Graduate&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <button type="button" class="button-big-left">
-        <p>
-            <<< </p>
-    </button>
-    <button type="button" class="button-left">
-        <p>
-            < </p>
-    </button>
-    <button type="button" class="button-home">
-        <p> /\ </p>
-    </button>
-    <button type="button" class="button-right">
-        <p> > </p>
-    </button>
-    <button type="button" class="button-big-right">
-        <p> >>> </p>
-    </button>
-
-    <div id:"test"><span class="testeController">0</span></div>
-
-    <script src="../js/controller.js"></script>
+   <div class="controller-container">
+      <div class="button-control">
+         <img src="../assets/icons/forward-solid.svg" class="control-double-arrows left-direction">
+      </div>
+      <div class="button-control">
+         <img src="../assets/icons/caret-right-solid.svg" class="control-arrows left-direction">
+      </div>
+      <div class="button-control">
+         <img src="../assets/icons/home-solid.svg" class="home-icon" alt="home">
+      </div>
+      <div class="button-control">
+         <img src="../assets/icons/caret-right-solid.svg" class="control-arrows">
+      </div>
+      <div class="button-control">
+         <img src="../assets/icons/forward-solid.svg" class="control-double-arrows">
+      </div>
+   </div>
 </body>
-
 </html>

@@ -9,11 +9,28 @@ body{
    align-items: center;
    justify-content: center;
    height: 100vh;
+
+   background-color: #fff;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   transition: background 2s;
+}
+
+.container:before {
+   content:"";
+   position:absolute;
+   top:0;
+   bottom:0;
+   left:0;
+   right:0;
+   background-image:linear-gradient(to bottom right, #ff0b85b2, #ff9939cb);
 }
 
 .form-container {
-   width: 650px;
-   height: 85%;
+   width: 380px;
+   height: 50%;
+   max-height: 450px;
 
    margin: 0 50px;
    padding:20px 30px;
@@ -25,17 +42,6 @@ body{
    position: relative;
    background-color: #fff;
    border: 5px solid transparent;
-   border-radius: 16px;
-   background-clip: padding-box;
-}
-
-.form-container::after{
-   position: absolute;
-   top: -4px; bottom: -4px;
-   left: -4px; right: -4px;
-   background: linear-gradient(to bottom right, #ff0b84 50.42%, #ff9939 100%); 
-   content: '';
-   z-index: -1;
    border-radius: 16px;
 }
 
@@ -88,7 +94,7 @@ input:focus{
 .form-footer{
    display: flex;
    justify-content: end;
-   height: 10%;   
+   min-height: 30px;
 }
   
 button {
@@ -101,7 +107,7 @@ button {
    font-size: 1rem;
 
    border-radius: 0.3rem;
-   border: solid 3px transparent;
+   border: solid 2px transparent;
    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(to bottom right, #ff0b84 50.42%, #ff9939 100%);
    background-origin: border-box;
    background-clip: content-box, border-box;
@@ -111,4 +117,8 @@ button {
 button:hover {
    box-shadow: none;
    color: white;
+}
+
+h1{
+   margin: 0;
 }

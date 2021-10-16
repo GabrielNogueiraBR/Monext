@@ -1,25 +1,46 @@
-* {
-    margin: 0;
-    padding: 0;
+.controller-container{
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: center;
+   height: 100vh;
+   padding: 0 5%;
+   gap: 16px;
+
+   background:linear-gradient(to bottom right, #0f0f0f, #212121);
 }
 
-.button-home,.button-big-left,.button-big-right,.button-left, 
-.button-right {
-    width: 100px;
-    height: 30px;
-    margin: 25% 0% 10% 10%;
-    border: 1px solid;
-    border-radius: 10px;
-}
-.testeController {
-    position: absolute; 
-    margin: -25% 0% 0% 46%;
-    border: 1px solid;
-    transform: scale(4, 3);
+.button-control{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 20%;
+   height: 30%;
+   cursor: pointer;
+   border: solid 6px #383838;
+   border-radius: 15px;
+   background-color: #383838;
+   transition: width 280ms, height 280ms, background-color 280ms;
 }
 
-.button-home:hover,.button-big-left:hover,.button-big-right:hover,.button-left:hover, 
-.button-right:hover {
-    background-color: grey;
-    cursor: pointer;
+.button-control:hover{
+   background-color: transparent;
+   width: 21%;
+   height: 31%;
+}
+
+.control-double-arrows{
+   width: 50%;   
+}
+
+.control-arrows{
+   width: 30%;   
+}
+
+.left-direction{
+   transform: scaleX(-1);
+}
+
+.home-icon {
+   width: 45%;
 }
