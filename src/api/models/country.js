@@ -9,3 +9,5 @@ class Country {
     this.temperature = temperature;
   }
 }
+
+module.exports = Country;
