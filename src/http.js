@@ -30,6 +30,11 @@ app.get('/controller', (req, res) => {
   res.render('controller.html');
 });
 
+// Render country-page
+app.get('/country-page', (req, res) => {
+  res.render('country-page.html');
+});
+
 // ================ ROUTES ================
 const formRouter = require('./api/routes/forms');
 
