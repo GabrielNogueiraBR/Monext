@@ -3,10 +3,12 @@ const express = require('express');
 const { createServer } = require('http');
 const { Server } = require('socket.io');
 const path = require('path');
+const { CountriesService } = require('./api/services/countriesService');
 
 const app = express();
 const http = createServer(app); // Create http protocol
 const io = new Server(http); // Create websocket protocol
+const serviceCountries = new CountriesService(); // Create service country
 
 app.use(express.json()); // Middleware parses incoming requests with JSON payloads
 
@@ -28,9 +30,15 @@ app.get('/home', (req, res) => {
 // Render controller, which uses to change countries screen
 app.get('/controller', (req, res) => {
   // Receive country and conversion value
-  const dataConversion = req.query;
+  const dataConversion = {
+    country: req.query.countrys,
+    conversionValue: req.query.conversionValue,
+  };
 
-  // Send data to service constructor (Construir a lista de objetos do tipo Country)
+  // Send data to service constructor and receive array of countries
+  const countries = serviceCountries
+    .createAllCountriesFromMock(dataConversion.country, dataConversion.conversionValue);
+
   res.render('controller.html');
 });
 
