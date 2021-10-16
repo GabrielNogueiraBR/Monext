@@ -28,7 +28,7 @@ body{
 }
 
 .form-container {
-   width: 400px;
+   width: 380px;
    height: 50%;
    max-height: 450px;
 
@@ -42,17 +42,6 @@ body{
    position: relative;
    background-color: #fff;
    border: 5px solid transparent;
-   border-radius: 16px;
-   background-clip: padding-box;
-}
-
-.form-container::after{
-   position: absolute;
-   top: -4px; bottom: -4px;
-   left: -4px; right: -4px;
-   background: linear-gradient(to bottom right, #ff0b84 50.42%, #ff9939 100%); 
-   content: '';
-   z-index: -1;
    border-radius: 16px;
 }
 
@@ -118,7 +107,7 @@ button {
    font-size: 1rem;
 
    border-radius: 0.3rem;
-   border: solid 3px transparent;
+   border: solid 2px transparent;
    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(to bottom right, #ff0b84 50.42%, #ff9939 100%);
    background-origin: border-box;
    background-clip: content-box, border-box;
@@ -128,4 +117,8 @@ button {
 button:hover {
    box-shadow: none;
    color: white;
+}
+
+h1{
+   margin: 0;
 }
