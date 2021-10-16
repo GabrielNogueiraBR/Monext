@@ -10,24 +10,26 @@
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
    <link href="https://fonts.googleapis.com/css2?family=Graduate&display=swap" rel="stylesheet">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
 </head>
 <body>
    <div class="controller-container">
       <div class="button-control">
-         <img src="../assets/icons/forward-solid.svg" class="control-double-arrows left-direction">
+         <img src="../assets/icons/forward-solid.svg" class="control-double-arrows left-direction" id="button-big-left">
       </div>
       <div class="button-control">
-         <img src="../assets/icons/caret-right-solid.svg" class="control-arrows left-direction">
+         <img src="../assets/icons/caret-right-solid.svg" class="control-arrows left-direction" id="button-left">
       </div>
       <div class="button-control">
-         <img src="../assets/icons/home-solid.svg" class="home-icon" alt="home">
+         <img src="../assets/icons/home-solid.svg" class="home-icon" alt="home" id="button-home">
       </div>
       <div class="button-control">
-         <img src="../assets/icons/caret-right-solid.svg" class="control-arrows">
+         <img src="../assets/icons/caret-right-solid.svg" class="control-arrows" id="button-right">
       </div>
       <div class="button-control">
-         <img src="../assets/icons/forward-solid.svg" class="control-double-arrows">
+         <img src="../assets/icons/forward-solid.svg" class="control-double-arrows" id="button-big-right">
       </div>
    </div>
 </body>
+<script type="module" src="../js/controller.js"></script>
 </html>

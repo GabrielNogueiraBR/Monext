@@ -1,38 +1,39 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 /* eslint-disable no-shadow */
-const socket = io();
+const socket = io('http://localhost:3000');
+
+socket.on('connect', () => {
+  console.log(`connected: ${socket.id}`);
+});
 
 let count = 0;
 
-function changeDisplayValue(value) {
-  $('.testeController').text(value);
-  // socket.emit('newDisplayValue', value);
+function sendOffset(value) {
+  console.log(value);
 }
 
-$('.button-left').on('click', (event) => {
+document.querySelector('#button-left').addEventListener('click', (event) => {
   count -= 1;
   changeDisplayValue(count);
 });
 
-$('.button-big-left').on('click', (event) => {
+document.querySelector('#button-big-left').addEventListener('click', (event) => {
   count -= 2;
   changeDisplayValue(count);
 });
 
-$('.button-right').on('click', (event) => {
+document.querySelector('#button-right').addEventListener('click', (event) => {
   count += 1;
   changeDisplayValue(count);
 });
 
-$('.button-big-right').on('click', (event) => {
+document.querySelector('#button-big-right').addEventListener('click', (event) => {
   count += 2;
   changeDisplayValue(count);
 });
 
-$('.button-home').on('click', (event) => {
+document.querySelector('#button-home').addEventListener('click', (event) => {
   count *= 0;
   changeDisplayValue(count);
 });
-
-// socket.on('changeDisplayValue', (value) => changeDisplayValue(value));
