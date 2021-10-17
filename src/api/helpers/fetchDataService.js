@@ -6,6 +6,8 @@ class FetchDataService {
     this.exchangeApiKey = process.env.EXCHANGE_API_KEY;
     this.timezoneApiUrl = process.env.TIMEZONE_API_URL;
     this.timezoneApiKey = process.env.TIMEZONE_API_KEY;
+    this.weatherApiUrl = process.env.WEATHER_API_URL;
+    this.weatherApiKey = process.env.WEATHER_API_KEY;
     this.getPostmanApiUrl = process.env.GET_POSTMAN_API_URL;
   }
 
@@ -17,8 +19,13 @@ class FetchDataService {
     return this.axiosGet(url);
   }
 
-  fetchTimezoneApi(capital, country) {
-    const url = `${this.timezoneApiUrl}?api_key=${this.timezoneApiKey}&location=${capital}, ${country}`;
+  fetchTimezoneApi(city, country) {
+    const url = `${this.timezoneApiUrl}?api_key=${this.timezoneApiKey}&location=${city}, ${country}`;
+    return this.axiosGet(url);
+  }
+
+  fetchWeatherApi(city) {
+    const url = `${this.weatherApiUrl}/current.json?key=${this.weatherApiKey}&q=${city}`;
     console.log(url);
     return this.axiosGet(url);
   }

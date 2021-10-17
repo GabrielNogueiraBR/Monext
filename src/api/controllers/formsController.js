@@ -20,6 +20,7 @@ class FormsController {
       const countriesInfo = await fetchService.fetchCountriesInfoApi();
       // example coming from request body (capital and country) for fetch timezone
       const timezone = await fetchService.fetchTimezoneApi(capital, country);
+      const weather = await fetchService.fetchWeatherApi(capital);
 
       // Example generating current time with GMT of other countries specifying
       // with timezone_location coming from timezone API.
@@ -30,6 +31,7 @@ class FormsController {
         countriesInfo,
         exchange,
         timezone,
+        weather,
       });
     } catch (err) {
       console.log(err);
