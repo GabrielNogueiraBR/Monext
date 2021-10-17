@@ -1,16 +1,24 @@
+/* eslint-disable class-methods-use-this */
 const FetchDataService = require('../helpers/fetchDataService');
 
 class FormsController {
-  constructor() {
-    this.fetchService = new FetchDataService();
-  }
-
   async send(req, res) {
-    const { baseCurrency } = req.body;
+    const { baseCurrency, targetCurrency } = req.body;
 
-    const data = await this.fetchService.fetchCurrentyApi(baseCurrency);
+    const fetchService = new FetchDataService();
 
-    return res.json(data);
+    try {
+      const currency = await fetchService.fetchExchangeApi(baseCurrency, targetCurrency);
+      const capital = await fetchService.fetchCountriesCapitalApi();
+
+      res.status(201).json({
+        currency,
+        capital,
+      });
+    } catch (err) {
+      console.log(err);
+      res.sendStatus(500);
+    }
   }
 }
 

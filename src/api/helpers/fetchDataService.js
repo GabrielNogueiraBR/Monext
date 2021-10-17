@@ -1,17 +1,30 @@
-const axios = require('axios');
+const axios = require('axios').default;
 
 class FetchDataService {
   constructor() {
-    this.currencyApiUrl = process.env.FREE_CURRENCY_API_URL;
-    this.currencyApiKey = process.env.FREE_CURRENCY_API_KEY;
+    this.exchangeApiUrl = process.env.EXCHANGE_API_URL;
+    this.exchangeApiKey = process.env.EXCHANGE_API_KEY;
+    this.getPostmanApiUrl = process.env.GET_POSTMAN_API_URL;
   }
 
-  async fetchCurrentyApi(baseCurrency) {
-    const url = `${this.currencyApiUrl}/latest?apiKey${this.currencyApiKey}?bas_currency=${baseCurrency}`;
+  fetchExchangeApi(baseCurrency, targetCurrency) {
+    let url = `${this.exchangeApiUrl}?api_key=${this.exchangeApiKey}&base=${baseCurrency}`;
 
-    const response = await axios.get(url);
+    if (targetCurrency) url = url.concat(`&target=${targetCurrency}`);
 
-    return response.data;
+    return this.axiosGet(url);
+  }
+
+  async fetchCountriesCapitalApi() {
+    const url = `${this.getPostmanApiUrl}/countries/capital`;
+    return this.axiosGet(url);
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  async axiosGet(url) {
+    return axios.get(url)
+      .then((response) => response.data)
+      .catch((error) => { throw new Error(error); });
   }
 }
 
