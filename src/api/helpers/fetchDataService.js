@@ -4,6 +4,8 @@ class FetchDataService {
   constructor() {
     this.exchangeApiUrl = process.env.EXCHANGE_API_URL;
     this.exchangeApiKey = process.env.EXCHANGE_API_KEY;
+    this.timezoneApiUrl = process.env.TIMEZONE_API_URL;
+    this.timezoneApiKey = process.env.TIMEZONE_API_KEY;
     this.getPostmanApiUrl = process.env.GET_POSTMAN_API_URL;
   }
 
@@ -12,6 +14,12 @@ class FetchDataService {
 
     if (targetCurrency) url = url.concat(`&target=${targetCurrency}`);
 
+    return this.axiosGet(url);
+  }
+
+  fetchTimezoneApi(capital, country) {
+    const url = `${this.timezoneApiUrl}?api_key=${this.timezoneApiKey}&location=${capital}, ${country}`;
+    console.log(url);
     return this.axiosGet(url);
   }
 
