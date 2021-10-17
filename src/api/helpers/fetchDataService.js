@@ -15,8 +15,14 @@ class FetchDataService {
     return this.axiosGet(url);
   }
 
-  async fetchCountriesCapitalApi() {
-    const url = `${this.getPostmanApiUrl}/countries/capital`;
+  fetchCountriesInfoApi() {
+    const infos = [
+      'currency',
+      'capital',
+      'flag',
+    ];
+    const infoString = infos.concat(',');
+    const url = `${this.getPostmanApiUrl}/countries/info?returns=${infoString}`;
     return this.axiosGet(url);
   }
 

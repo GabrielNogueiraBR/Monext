@@ -8,12 +8,12 @@ class FormsController {
     const fetchService = new FetchDataService();
 
     try {
-      const currency = await fetchService.fetchExchangeApi(baseCurrency, targetCurrency);
-      const capital = await fetchService.fetchCountriesCapitalApi();
+      const countriesInfo = await fetchService.fetchCountriesInfoApi();
+      const exchange = await fetchService.fetchExchangeApi(baseCurrency, targetCurrency);
 
       res.status(201).json({
-        currency,
-        capital,
+        countriesInfo,
+        exchange,
       });
     } catch (err) {
       console.log(err);
