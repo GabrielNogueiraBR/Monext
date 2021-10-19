@@ -1,11 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 /* eslint-disable no-shadow */
-const socket = io('http://localhost:3000');
-
-socket.on('connect', () => {
-  console.log(`connected: ${socket.id}`);
-});
+const socket = io('http://localhost:3000/controller');
 
 let count = 0;
 

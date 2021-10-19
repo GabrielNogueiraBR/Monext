@@ -3,7 +3,7 @@
 // ================ SOCKET ================
 
 // Connection with socket server
-const socket = io('http://localhost:3000');
+const socket = io('http://localhost:3000/form');
 
 // ================ EVENTS ================
 
@@ -28,5 +28,6 @@ document.querySelector('#btn-confirm').addEventListener('click', (e) => {
   // Send request using fetch API
   fetch('/forms/countries/create', myRequest)
     .then((res) => res.json())
-    .then((countries) => socket.emit('sendCountries', countries));
+    .then((countries) => socket.emit('updateCountries', countries)) // Update list of countries
+    .then(window.location.href = '/controller'); // Redirect page
 });

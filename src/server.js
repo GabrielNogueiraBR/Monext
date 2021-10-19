@@ -1,5 +1,5 @@
 const { http } = require('./http');
-require('./api/websocket/country');
+require('./api/websocket/socketServer');
 require('dotenv').config();
 
 const port = process.env.PORT || 3000;
