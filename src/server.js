@@ -1,17 +1,9 @@
-const express = require('express');
-const path = require('path');
+const { http } = require('./http');
+require('./api/websocket/socketServer');
+require('dotenv').config();
 
-// eslint-disable-next-line no-underscore-dangle
-const dirname = path.resolve();
-const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
-app.use(express.static(`${dirname}/src/views`));
-
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
-
-app.listen(port, () => {
-  console.log(`Server is running on http:localhost:${port}`);
+http.listen(port, () => {
+  console.log(`listening on *:${port}`);
 });
