@@ -1,0 +1,124 @@
+body{
+   margin: 0;
+}
+
+.container{
+   font-family: Graduate;
+
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 100vh;
+
+   background-color: #fff;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   transition: background 2s;
+}
+
+.container:before {
+   content:"";
+   position:absolute;
+   top:0;
+   bottom:0;
+   left:0;
+   right:0;
+   background-image:linear-gradient(to bottom right, #ff0b85b2, #ff9939cb);
+}
+
+.form-container {
+   width: 380px;
+   height: 50%;
+   max-height: 450px;
+
+   margin: 0 50px;
+   padding:20px 30px;
+
+   display: flex;
+   flex-direction: column;
+   gap: 8px;
+   
+   position: relative;
+   background-color: #fff;
+   border: 5px solid transparent;
+   border-radius: 16px;
+}
+
+.form-content{
+   display: flex;
+   height: 100%;
+   flex-direction: column;
+   justify-content:center;
+}
+
+.monext-logo{
+   display: flex;
+   justify-content: center;
+   height: 100%;
+}
+
+.monext-logo img{
+   width: 90%;
+}
+
+select{
+   font-family: Graduate;
+   height:35px;
+   border:none;
+   border-bottom: solid 2px #ff0b84;
+   outline: none;
+}
+
+select:focus{
+   border-color: #ff9939;
+}
+
+label {
+   font-size: 12px;
+   color: #ff0b84;
+}
+
+input {
+   font-family: graduate;
+   height:35px;
+   border:none;
+   border-bottom: solid 2px #ff0b84;
+   outline: none;
+}
+
+input:focus{
+   border-color: #ff9939;
+}
+
+.form-footer{
+   display: flex;
+   justify-content: end;
+   min-height: 30px;
+}
+  
+button {
+   cursor: pointer;
+   color:#ff0b84;
+
+   font-family: Graduate;
+   font-style: normal;
+   font-weight: normal;
+   font-size: 1rem;
+
+   border-radius: 0.3rem;
+   border: solid 2px transparent;
+   background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(to bottom right, #ff0b84 50.42%, #ff9939 100%);
+   background-origin: border-box;
+   background-clip: content-box, border-box;
+   box-shadow: 2px 1000px 1px #fff inset;
+}
+ 
+button:hover {
+   box-shadow: none;
+   color: white;
+}
+
+h1{
+   margin: 0;
+}
