@@ -18,19 +18,7 @@ class CountriesService {
     return countryData;
   }
 
-  createAllCountriesFromMock(countryName, convertQuantity) {
-    // Find base country in mock file
-    const countryData = this.countriesMocked.find((country) => country.iso2Code === countryName);
-
-    // Find base currency in mock
-    const baseCurrency = this.findCurrencyValueInMock(countryData.currency);
-
-    // Convert currency country to dollar currency
-    const convertDollar = baseCurrency * convertQuantity;
-
-    // Define currency USD for testing mock
-    countryData.currency = 'USD';
-
+  createAllCountriesFromMock() {
     // Return array of Country objects
     return this.countriesMocked.map((mock) => {
       const country = new Country();

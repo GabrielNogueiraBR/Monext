@@ -10,10 +10,11 @@
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
    <link href="https://fonts.googleapis.com/css2?family=Graduate&display=swap" rel="stylesheet">
    <script type="text/javascript" src="../js/background-animation.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
 </head>
 <body>
    <div id="container" class="container">
-      <form class="form-container" action="/controller" method="get">
+      <form class="form-container" id="form-country">
          <div class="monext-logo">
             <img src="../assets/images/MonextLogo.svg" alt="Monext logo">
          </div>
@@ -31,9 +32,11 @@
             <input id="conversion-value" name="conversionValue" type="text">
          </div>
          <div class="form-footer">
-            <button>Confirm</button>
+            <button type="button" id="btn-confirm">Confirm</button>
          </div>
       </form>
    </div>
 </body>
+<!-- Import JS files -->
+<script type="module" src="../js/index.js"></script>
 </html>
