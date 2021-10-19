@@ -14,6 +14,7 @@
   },
   "homepage": "https://github.com/GabrielNogueiraBR/Monext#readme",
   "scripts": {
+    "start": "node ./src/server.js",
     "dev": "nodemon",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix . --ignore-pattern './node_modules'",
@@ -30,9 +31,11 @@
     "ext": "js,html,css"
   },
   "dependencies": {
+    "axios": "^0.23.0",
     "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "moment-timezone": "^0.5.33",
     "socket.io": "^4.2.0"
   },
   "devDependencies": {
