@@ -13,6 +13,9 @@ const sockets = {
   controller: [],
 };
 
+// Create an offSet for controller
+let offSetController = 0;
+
 // ================ NAMESPACE FORM ================
 io.of('/form').on('connection', (socket) => {
   const socketsNamespace = sockets.form;
@@ -41,14 +44,10 @@ io.of('country').on('connection', (socket) => {
 
   // Declare offSet of instance page
   const offSet = socketsNamespace.indexOf(socket.id);
-
+  console.log(`offSet: ${offSet}`);
+  console.log(`offSetController: ${offSetController}`);
   // Send country information
-  socket.emit('inicializeCountryConfig', offSet, listCountries);
-
-  // Remove socket from list of sockets during disconnecting
-  socket.on('disconnecting', () => {
-    socketsNamespace.pop(socket.id);
-  });
+  socket.emit('inicializeCountryConfig', offSet + offSetController, listCountries);
 });
 
 // ================ NAMESPACE CONTROLLER ================
@@ -57,6 +56,13 @@ io.of('controller').on('connection', (socket) => {
 
   // Add connection to list of sockets
   socketsNamespace.push(socket.id);
+
+  // Event for change offset
+  socket.on('sendOffSetController', (value) => {
+    io.of('country').emit('updateOffSetController', value);
+
+    offSetController += value;
+  });
 
   // Remove socket from list of sockets during disconnecting
   socket.on('disconnecting', () => {

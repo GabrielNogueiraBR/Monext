@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 const socket = io('http://localhost:3000/country');
 let offSetInstance;
-let offSetController;
+let offSetController = 0;
 let countryInstance;
 
 /**
@@ -39,4 +39,32 @@ socket.on('inicializeCountryConfig', (offSet, countries) => {
 
 socket.on('updateCountryConfig', (countries) => {
   inicializeCountryConfig(offSetInstance, countries);
+});
+
+socket.on('updateOffSetController', (value) => {
+  // choosing the movement
+  switch (value) {
+    case -2:
+      // move big left
+      console.log('move big left');
+      break;
+    case -1:
+      // move left
+      console.log('move left');
+      break;
+    case 1:
+      // move right
+      console.log('move right');
+      break;
+    case 2:
+      // move big right
+      console.log('move big right');
+      break;
+    default:
+      // move to home
+      console.log('move to home');
+      break;
+  }
+
+  offSetController += value;
 });
