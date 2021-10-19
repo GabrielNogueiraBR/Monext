@@ -6,7 +6,7 @@ The monext is a multiscreen application that redefines the way you check into co
 At first, we’ll have a controller, that will need to have an input of the amount of Money that you will convert. The currency will be decided after you choose your country. For example, if you choose Brazil, the currency will be BRL, if you choose United States, USD, and so on.
 Then, it will look really similar to Liquid Galaxy. It will have a controller, and some screens with the information of the countries. By using the controller, you will be able to decide if you want to go to the next screen, to go back one, go to the last one or the first. The controller will also give you an option that will be able to go back to the homepage, and define again the amount of Money and the country that will be used as a base.
 <p align="center">
-<img src="./public/assets/images/MonextLogo.svg" width="70%">
+<img src="/public/assets/images/MonextLogo.svg" width="70%">
 </p>
 
 ## 📝  Requirements
