@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 const socket = io('http://localhost:3000/country');
-let offSetInstance = 0;
+let offSetInstance;
+let offSetController;
 let countryInstance;
 
 /**
