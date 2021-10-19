@@ -22,6 +22,8 @@ io.of('/form').on('connection', (socket) => {
 
   socket.on('updateCountries', (countries) => {
     listCountries = countries; // Update list with User options
+
+    io.of('country').emit('updateCountryConfig', listCountries); // Update all country-page by list
   });
 
   // Remove socket from list of sockets during disconnecting

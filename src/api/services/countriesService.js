@@ -26,8 +26,8 @@ class CountriesService {
       country.capital = mock.capital;
       country.symbol = mock.iso2Code;
       country.flag = mock.flag;
-      country.currency = 0;
-      country.timezone = 0;
+      country.currency = mock.currency;
+      country.timezone = mock.timezone;
       country.temperature = 0;
 
       return country;
