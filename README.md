@@ -8,8 +8,8 @@
  <img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E">
 </p>
 <p align="center">
- <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white">
- <img src="https://img.shields.io/badge/Socket.io-010101?&style=for-the-badge&logo=Socket.io&logoColor=white">
+ <a href="https://expressjs.com/"><img alt="Qries" src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white"></a>
+ <a href="https://github.com/socketio/socket.io"><img alt="Qries" src="https://img.shields.io/badge/Socket.io-010101?&style=for-the-badge&logo=Socket.io&logoColor=white"></a>
 </p>
 
 # 🌍 Monext Galaxy
@@ -47,14 +47,16 @@ GET_POSTMAN_API_URL=https://countriesnow.space/api/v0.1
 `npm start`
 
 ## 📦 External packages
-[ExpressJS](https://expressjs.com/) - is used to run the server with all routes and business rules together with Socket.io
+
+<a href="https://expressjs.com/"><img alt="Qries" src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white"></a> - is used to run the server with all routes and business rules together with Socket.io.
 </br>
-[Socket.io](https://github.com/socketio/socket.io) - is used to make the multi-screen connection in this project, it is through it that the controller will communicate and send the events that will make the user to move the screens from one side to the other, in a carousel format.
+<a href="https://github.com/socketio/socket.io"><img alt="Qries" src="https://img.shields.io/badge/Socket.io-010101?&style=for-the-badge&logo=Socket.io&logoColor=white"></a> - is used to make the multi-screen connection in this project.
 </br>
-[Figma](https://www.figma.com/file/huI74oLZX9039WjZddKyIg/?node-id=103%3A2) - is used to prototype the application screens
+<a href="https://www.figma.com/file/huI74oLZX9039WjZddKyIg/?node-id=103%3A2"><img alt="Qries" src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"></a> - is used to prototype the application screens (click on FIGMA to view project prototype).
+
 
 ## 👨‍💻 Usage
-`pending`
+`Coming soon`
 
 ## 👨‍👦‍👦 Contributors
 <div align="center">
