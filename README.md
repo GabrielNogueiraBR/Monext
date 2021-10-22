@@ -20,6 +20,8 @@ At first, we’ll have a controller, that will need to have an input of the amou
 Then, it will look really similar to Liquid Galaxy. It will have a controller, and some screens with the information of the countries. By using the controller, you will be able to decide if you want to go to the next screen, to go back one, go to the last one or the first. The controller will also give you an option that will be able to go back to the homepage, and define again the amount of Money and the country that will be used as a base.
 
 # 👀 App Preview
+<a href="https://www.figma.com/file/huI74oLZX9039WjZddKyIg/?node-id=103%3A2"><img alt="Qries" src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"></a> - is used to prototype the application screens (click on FIGMA to view project prototype).
+</br>
 ``Coming soon``
 
 ## 📝 Installation
@@ -52,8 +54,6 @@ GET_POSTMAN_API_URL=https://countriesnow.space/api/v0.1
 </br>
 <a href="https://github.com/socketio/socket.io"><img alt="Qries" src="https://img.shields.io/badge/Socket.io-010101?&style=for-the-badge&logo=Socket.io&logoColor=white"></a> - is used to make the multi-screen connection in this project.
 </br>
-<a href="https://www.figma.com/file/huI74oLZX9039WjZddKyIg/?node-id=103%3A2"><img alt="Qries" src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"></a> - is used to prototype the application screens (click on FIGMA to view project prototype).
-
 
 ## 👨‍💻 Usage
 `Coming soon`
