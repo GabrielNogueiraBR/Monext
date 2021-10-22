@@ -1,8 +1,11 @@
 /* eslint-disable class-methods-use-this */
 const moment = require('moment-timezone');
+const { CountriesService } = require('../services/countriesService');
 const FetchDataService = require('../helpers/fetchDataService');
 
-class FormsController {
+const countriesService = new CountriesService();
+
+class CountriesController {
   async send(req, res) {
     const {
       baseCurrency, targetCurrency, capital, country,
@@ -38,6 +41,17 @@ class FormsController {
       res.sendStatus(500);
     }
   }
+
+  create(req, res) {
+    // Receiving country and value of conversion
+    const { country, valueConversion } = req.body;
+
+    // From test application
+    const countries = countriesService.createAllCountriesFromMock();
+
+    // Send response (Array of countries)
+    res.send(countries);
+  }
 }
 
-module.exports = FormsController;
+module.exports = CountriesController;

@@ -36,8 +36,8 @@ app.get('/country-page', (req, res) => {
 });
 
 // ================ ROUTES ================
-const formRouter = require('./api/routes/forms');
+const countriesRouter = require('./api/routes/countriesRoute');
 
-app.use('/forms', formRouter);
+app.use('/countries', countriesRouter);
 
 module.exports = { http, io };
