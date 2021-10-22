@@ -1,5 +1,5 @@
 <p align="center">
- <img src="https://github.com/GabrielNogueiraBR/Monext/blob/main/src/public/assets/images/MonextLogo.svg" width="60%">
+ <img src="https://github.com/GabrielNogueiraBR/Monext/blob/main/src/public/assets/images/MonextLogo.svg" width="80%">
 </p>
 
 <p align="center">
@@ -16,13 +16,22 @@
 
 Monext
 The monext is a multiscreen application that redefines the way you check into converting your money: the first step you need to do is to select the country you are, and inputting the amout of Money you have to convert. The next step is all done by the app: it will show a carousel of countries, with some basic info of them: their flag, the converted Money you’ve inputted before, the local timezone (at their capital), and the temperature at their capital.
+</br>
 At first, we’ll have a controller, that will need to have an input of the amount of Money that you will convert. The currency will be decided after you choose your country. For example, if you choose Brazil, the currency will be BRL, if you choose United States, USD, and so on.
 Then, it will look really similar to Liquid Galaxy. It will have a controller, and some screens with the information of the countries. By using the controller, you will be able to decide if you want to go to the next screen, to go back one, go to the last one or the first. The controller will also give you an option that will be able to go back to the homepage, and define again the amount of Money and the country that will be used as a base.
 
 # 👀 App Preview
 <a href="https://www.figma.com/file/huI74oLZX9039WjZddKyIg/?node-id=103%3A2"><img alt="Qries" src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"></a> - is used to prototype the application screens (click on FIGMA to view project prototype).
 </br>
-``Coming soon``
+`Coming soon`
+
+## 🖥️ Requirements
+1. Make sure **Node JS** is installed on your machine by running:
+```bash
+node -v
+```
+
+2. If you have not installed the **Node JS**, use the following link to download LTS version and install it: [Download NodeJS](https://nodejs.org/en/)
 
 ## 📝 Installation
 
@@ -56,7 +65,18 @@ GET_POSTMAN_API_URL=https://countriesnow.space/api/v0.1
 </br>
 
 ## 👨‍💻 Usage
-`Coming soon`
+Check server health
+```
+GET /
+```
+To access the application start screen, go to this path and from there it will be possible to navigate to the next screens.
+```
+GET /home
+```
+On this screen, the user must inform the country of origin and the value in the currency of the country of origin that he wants to convert
+<p align="center">
+ <img src="https://user-images.githubusercontent.com/69533533/138381456-38f8c235-96f1-4376-afa4-d58f84ea8693.png" width="75%">
+</p>
 
 ## 👨‍👦‍👦 Contributors
 <div align="center">
@@ -64,7 +84,8 @@ GET_POSTMAN_API_URL=https://countriesnow.space/api/v0.1
  <a href="https://github.com/VitorGois" target="_blank"><img src="https://avatars.githubusercontent.com/u/69533533?v=4" width="8%"></a>
  <a href="https://github.com/CordeiroOtavio" target="_blank"><img src="https://avatars.githubusercontent.com/u/69653683?v=4" width="8%"></a>
  <a href="https://github.com/ryanraul" target="_blank"><img src="https://avatars.githubusercontent.com/u/42502534?v=4" width="8%"></a>
- <a href="https://github.com/gferrazz" target="_blank"><img src="https://avatars.githubusercontent.com/u/48798017?v=4" width="8%"</a>
+ <a href="https://github.com/gferrazz" target="_blank"><img src="https://avatars.githubusercontent.com/u/48798017?v=4" width="8%"></a>
 </div>
 
 ## 📃 License
+See license on [LICENSE](https://github.com/GabrielNogueiraBR/Monext/blob/docs/LICENSE).
