@@ -88,4 +88,4 @@ On this screen, the user must inform the country of origin and the value in the 
 </div>
 
 ## 📃 License
-See license on [LICENSE](https://github.com/GabrielNogueiraBR/Monext/blob/docs/LICENSE).
+This software is under the [MIT License](https://github.com/GabrielNogueiraBR/Monext/blob/docs/LICENSE).
