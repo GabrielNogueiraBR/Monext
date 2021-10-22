@@ -61,6 +61,10 @@ io.of('controller').on('connection', (socket) => {
   socket.on('sendOffSetController', (value) => {
     io.of('country').emit('updateOffSetController', value);
 
+    setTimeout(() => {
+      io.of('country').emit('updateCountryWithOffset', value, listCountries);
+    }, 500);
+
     offSetController += value;
   });
 

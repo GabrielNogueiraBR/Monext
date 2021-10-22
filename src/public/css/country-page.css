@@ -58,3 +58,92 @@
 .capital-info{
    flex: 30%;
 }
+
+.slideOutLeft {
+   animation: slideOutLeft 1.5s forwards;
+}
+
+.slideOutRight {
+   animation: slideOutRight 1.5s forwards;
+}
+
+.slideOutBigLeft {
+   animation: slideOutBigLeft 1.5s forwards;
+}
+
+.slideOutBigRight {
+   animation: slideOutBigRight 1.5s forwards;
+}
+
+@keyframes slideOutRight {
+   33% {
+      opacity: 0;
+      transform: translateX(100px);
+   }
+   66%{
+      opacity: 0;
+      transform: translateX(-100px);
+   }
+   100%{
+      opacity: 1;
+   }
+}
+
+@keyframes slideOutBigRight {
+   33% {
+      opacity: 0;
+      transform: translateX(200px);
+   }
+   66%{
+      opacity: 0;
+      transform: translateX(-200px);
+   }
+   100%{
+      opacity: 1;
+   }
+}
+
+@keyframes slideOutLeft {
+   33% {
+      opacity: 0;
+      transform: translateX(-100px);
+   }
+   66%{
+      opacity: 0;
+      transform: translateX(100px);
+   }
+   100%{
+      opacity: 1;
+   }
+}
+
+@keyframes slideOutBigLeft {
+   33% {
+      opacity: 0;
+      transform: translateX(-200px);
+   }
+   66%{
+      opacity: 0;
+      transform: translateX(200px);
+   }
+   100%{
+      opacity: 1;
+   }
+}
+
+.backgroundTransition{
+   animation: backgroundTransition 1.5s forwards;
+}
+
+@keyframes backgroundTransition {
+   33% {
+      opacity: 0;
+   }
+   66% {
+      opacity: 0;
+   }
+   100% {
+      opacity: 1;
+   }
+}
+

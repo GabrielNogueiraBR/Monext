@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 const socket = io('http://localhost:3000/country');
 let offSetInstance;
-let offSetController = 0;
 let countryInstance;
 
 /**
@@ -41,24 +40,39 @@ socket.on('updateCountryConfig', (countries) => {
   inicializeCountryConfig(offSetInstance, countries);
 });
 
+socket.on('updateCountryWithOffset', (value, countries) => {
+  offSetInstance += value;
+
+  if (offSetInstance < 0) offSetInstance = countries.length - 1;
+  if (offSetInstance > countries.length - 1) offSetInstance = 0;
+
+  inicializeCountryConfig(offSetInstance, countries);
+});
+
 socket.on('updateOffSetController', (value) => {
+  const infoContainer = document.getElementById('info-container');
+  const countryContainer = document.getElementById('country-container');
+
   // choosing the movement
   switch (value) {
     case -2:
       // move big left
-      console.log('move big left');
+      infoContainer.classList.add('slideOutBigRight');
+      countryContainer.classList.add('backgroundTransition');
       break;
     case -1:
-      // move left
-      console.log('move left');
+      infoContainer.classList.add('slideOutRight');
+      countryContainer.classList.add('backgroundTransition');
       break;
     case 1:
       // move right
-      console.log('move right');
+      infoContainer.classList.add('slideOutLeft');
+      countryContainer.classList.add('backgroundTransition');
       break;
     case 2:
       // move big right
-      console.log('move big right');
+      infoContainer.classList.add('slideOutBigLeft');
+      countryContainer.classList.add('backgroundTransition');
       break;
     default:
       // move to home
@@ -66,5 +80,11 @@ socket.on('updateOffSetController', (value) => {
       break;
   }
 
-  offSetController += value;
+  setTimeout(() => {
+    infoContainer.classList.remove('slideOutRight');
+    infoContainer.classList.remove('slideOutLeft');
+    infoContainer.classList.remove('slideOutBigRight');
+    infoContainer.classList.remove('slideOutBigLeft');
+    countryContainer.classList.remove('backgroundTransition');
+  }, 1500);
 });
