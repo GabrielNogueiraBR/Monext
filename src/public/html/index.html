@@ -9,8 +9,8 @@
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
    <link href="https://fonts.googleapis.com/css2?family=Graduate&display=swap" rel="stylesheet">
-   <script type="text/javascript" src="../js/background-animation.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-masker/1.2.0/vanilla-masker.min.js"></script>
 </head>
 <body>
    <div id="container" class="container">
@@ -20,12 +20,17 @@
          </div>
          <div class="form-content">
             
-            <label for="countrys" class="select-label">Select the Country</label>
-            <select id="countrys" name="countrys" class="select-countrys">
+            <label for="countries" class="select-label">Select the Country</label>
+            <select id="countries" name="countries" class="select-countries">
               <option value="BR">Brazil</option>
               <option value="JP">Japan</option>
               <option value="MX">Mexico</option>
               <option value="DE">Germany</option>
+              <option value="US">United States</option>
+              <option value="RU">Russia</option>
+              <option value="GB">United Kingdom</option>
+              <option value="CN">China</option>
+              <option value="AR">Argentina</option>
             </select>
 
             <label for="conversion-value" style="margin-top:5%">Conversion Value</label>
@@ -39,4 +44,6 @@
 </body>
 <!-- Import JS files -->
 <script type="module" src="../js/index.js"></script>
+<script type="text/javascript" src="../js/background-animation.js"></script>
+<script type="text/javascript" src="../js/currency/mask-currency.js"></script>
 </html>
