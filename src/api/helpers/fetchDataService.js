@@ -45,7 +45,7 @@ class FetchDataService {
   }
 
   filterCountries(countriesSet, countriesResponse) {
-    const countries = countriesResponse.filter((country) => countriesSet.has(country.name));
+    const countries = countriesResponse.filter((country) => countriesSet.includes(country.name));
     return countries;
   }
 

@@ -7,7 +7,7 @@ const Country = require('../models/country');
 
 const fetchService = new FetchDataService();
 
-const CountriesSet = new Set([
+const CountriesSet = [
   'Argentina',
   'Brazil',
   'Canada',
@@ -18,7 +18,7 @@ const CountriesSet = new Set([
   'Russia',
   'United Kingdom',
   'United States',
-]);
+];
 
 class CountriesService {
   constructor() {
@@ -27,7 +27,11 @@ class CountriesService {
   }
 
   async createAllCountries(countryName, valueConversion) {
-    return this.findCountriesData(countryName);
+    const countries = CountriesSet.filter((country) => country !== countryName);
+    const countriesData = await this.findCountriesData(countryName, countries);
+    const groupedData = this.groupDataByCountry(countriesData);
+
+    return groupedData;
   }
 
   createAllCountriesFromMock() {
@@ -46,8 +50,43 @@ class CountriesService {
     });
   }
 
-  async findCountriesData(countryName) {
-    const countriesCapital = await fetchService.fetchCountriesCapital(CountriesSet);
+  groupDataByCountry(countriesData) {
+    const grouped = [];
+
+    // countriesCapital is defined in findCountriesData method.
+    countriesData.countriesCapital.forEach((data) => {
+      const aux = {};
+
+      const currency = countriesData.countriesCurrency.find((country) => country.name === data.name);
+      const { exchange } = countriesData.countriesExchange.find((country) => country.name === data.name);
+      const weather = countriesData.weatherCapitals.find((country) => {
+        let countryName = country.country;
+        if (country.country === 'United States of America') countryName = 'United States'; // the 'diferentão'
+        return countryName === data.name;
+      });
+      const timezoneData = countriesData.timezoneMocked.find((country) => country.name === data.name);
+
+      aux.country = data.name;
+      aux.capital = data.capital;
+      aux.currency = currency;
+      aux.exchange = exchange;
+      aux.weather = {
+        temp_c: weather.temp_c,
+        temp_f: weather.temp_f,
+      };
+      aux.timezone = {
+        tz: timezoneData.timezone,
+        gmt: timezoneData.gmt_offset,
+      };
+
+      grouped.push(aux);
+    });
+
+    return grouped;
+  }
+
+  async findCountriesData(countryName, countries) {
+    const countriesCapital = await fetchService.fetchCountriesCapital(countries);
     const countriesCurrency = await fetchService.fetchCountriesCurrency(CountriesSet);
     const baseCurrency = countriesCurrency.find((country) => country.name === countryName).currency;
     const countriesExchange = await fetchService.fetchExchangeApi(baseCurrency, countriesCurrency);
