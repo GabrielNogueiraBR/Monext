@@ -1,4 +1,6 @@
 /* eslint-disable class-methods-use-this */
+const moment = require('moment-timezone');
+
 const FetchDataService = require('../helpers/fetchDataService');
 const countriesMocked = require('../mock/countries');
 const currenciesMocked = require('../mock/currency');
@@ -30,8 +32,9 @@ class CountriesService {
     const countries = CountriesSet.filter((country) => country !== countryName);
     const countriesData = await this.findCountriesData(countryName, countries);
     const groupedData = this.groupDataByCountry(countriesData);
+    const contriesObject = this.buildCountryObject(groupedData, valueConversion);
 
-    return groupedData;
+    return contriesObject;
   }
 
   createAllCountriesFromMock() {
@@ -50,6 +53,29 @@ class CountriesService {
     });
   }
 
+  buildCountryObject(countriesData, valueConversion) {
+    const countries = countriesData.map((data) => {
+      const { timezone, weather } = data;
+      const { flag } = countriesMocked.find((mock) => mock.name === data.country);
+      const valueConverted = valueConversion * data.exchange;
+      const date = moment().tz(timezone.tz).format('YYYY-MM-DD HH:mm:SS');
+
+      const country = new Country(
+        data.country,
+        data.capital,
+        data.currency,
+        valueConverted,
+        flag,
+        date,
+        timezone.gmt,
+        weather.temp_c,
+      );
+
+      return country;
+    });
+    return countries;
+  }
+
   groupDataByCountry(countriesData) {
     const grouped = [];
 
@@ -57,7 +83,7 @@ class CountriesService {
     countriesData.countriesCapital.forEach((data) => {
       const aux = {};
 
-      const currency = countriesData.countriesCurrency.find((country) => country.name === data.name);
+      const { currency } = countriesData.countriesCurrency.find((country) => country.name === data.name);
       const { exchange } = countriesData.countriesExchange.find((country) => country.name === data.name);
       const weather = countriesData.weatherCapitals.find((country) => {
         let countryName = country.country;
@@ -75,7 +101,8 @@ class CountriesService {
         temp_f: weather.temp_f,
       };
       aux.timezone = {
-        tz: timezoneData.timezone,
+        // gambis - for America / Mexico_City ", note the double quotes, this is coming from the API and breaks our flow
+        tz: timezoneData.timezone.replace('"', ''),
         gmt: timezoneData.gmt_offset,
       };
 
