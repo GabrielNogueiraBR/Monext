@@ -42,12 +42,13 @@ class CountriesController {
     }
   }
 
-  create(req, res) {
+  async create(req, res) {
     // Receiving country and value of conversion
     const { country, valueConversion } = req.body;
 
     // From test application
-    const countries = countriesService.createAllCountriesFromMock();
+    const countries = await countriesService.createAllCountries(country, valueConversion);
+    // const countries = countriesService.createAllCountriesFromMock();
 
     // Send response (Array of countries)
     res.send(countries);

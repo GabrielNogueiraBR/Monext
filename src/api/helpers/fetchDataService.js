@@ -1,4 +1,7 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable class-methods-use-this */
 const axios = require('axios').default;
+require('dotenv').config();
 
 class FetchDataService {
   constructor() {
@@ -11,37 +14,73 @@ class FetchDataService {
     this.getPostmanApiUrl = process.env.GET_POSTMAN_API_URL;
   }
 
-  fetchExchangeApi(baseCurrency, targetCurrency) {
+  async fetchExchangeApi(baseCurrency, countriesCurrency, targetCurrency = null) {
     let url = `${this.exchangeApiUrl}?api_key=${this.exchangeApiKey}&base=${baseCurrency}`;
-
     if (targetCurrency) url = url.concat(`&target=${targetCurrency}`);
 
-    return this.axiosGet(url);
+    const response = await this.axiosGet(url);
+    return this.filterExchange(baseCurrency, response.exchange_rates, countriesCurrency);
   }
 
-  fetchTimezoneApi(city, country) {
-    const url = `${this.timezoneApiUrl}?api_key=${this.timezoneApiKey}&location=${city}, ${country}`;
-    return this.axiosGet(url);
+  async fetchWeatherApi(countriesCapital) {
+    const promises = countriesCapital.map((country) => {
+      const city = country.capital;
+      const url = `${this.weatherApiUrl}/current.json?key=${this.weatherApiKey}&q=${city}`;
+      return this.axiosGet(url);
+    });
+    const resolves = await Promise.all(promises);
+    return this.filterWeatherInfos(resolves);
   }
 
-  fetchWeatherApi(city) {
-    const url = `${this.weatherApiUrl}/current.json?key=${this.weatherApiKey}&q=${city}`;
-    console.log(url);
-    return this.axiosGet(url);
+  async fetchCountriesCapital(countriesSet) {
+    const url = `${this.getPostmanApiUrl}/countries/capital`;
+    const response = await this.axiosGet(url);
+    return this.filterCountries(countriesSet, response.data);
   }
 
-  fetchCountriesInfoApi() {
-    const infos = [
-      'currency',
-      'capital',
-      'flag',
-    ];
-    const infoString = infos.concat(',');
-    const url = `${this.getPostmanApiUrl}/countries/info?returns=${infoString}`;
-    return this.axiosGet(url);
+  async fetchCountriesCurrency(countriesSet) {
+    const url = `${this.getPostmanApiUrl}/countries/currency`;
+    const response = await this.axiosGet(url);
+    return this.filterCountries(countriesSet, response.data);
   }
 
-  // eslint-disable-next-line class-methods-use-this
+  filterCountries(countriesSet, countriesResponse) {
+    const countries = countriesResponse.filter((country) => countriesSet.has(country.name));
+    return countries;
+  }
+
+  filterExchange(baseCurrency, exchangeRates, countriesCurrency) {
+    const exchanges = [];
+    exchanges.baseCurrency = baseCurrency;
+
+    Object.keys(exchangeRates).forEach((exchange) => {
+      const find = countriesCurrency.find((country) => country.currency === exchange);
+      if (find) exchanges.push({ ...find, exchange: exchangeRates[exchange] });
+    });
+
+    return exchanges;
+  }
+
+  filterWeatherInfos(weatherResponse) {
+    const weathers = weatherResponse.map((weather) => {
+      const { name: capital, country, tz_id: timezone } = weather.location;
+      // eslint-disable-next-line camelcase
+      const { temp_c, temp_f } = weather.current;
+      const timezoneSplited = timezone.split('/');
+      const timezoneCity = timezoneSplited[timezoneSplited.length - 1];
+
+      return {
+        country,
+        capital,
+        timezoneCity,
+        timezone,
+        temp_c,
+        temp_f,
+      };
+    });
+    return weathers;
+  }
+
   async axiosGet(url) {
     return axios.get(url)
       .then((response) => response.data)

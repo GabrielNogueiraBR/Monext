@@ -1,8 +1,24 @@
-/* eslint-disable no-empty-function */
-/* eslint-disable no-useless-constructor */
+/* eslint-disable class-methods-use-this */
+const FetchDataService = require('../helpers/fetchDataService');
 const countriesMocked = require('../mock/countries');
 const currenciesMocked = require('../mock/currency');
+const timezoneMocked = require('../mock/timezone');
 const Country = require('../models/country');
+
+const fetchService = new FetchDataService();
+
+const CountriesSet = new Set([
+  'Argentina',
+  'Brazil',
+  'Canada',
+  'China',
+  'Italy',
+  'Japan',
+  'Mexico',
+  'Russia',
+  'United Kingdom',
+  'United States',
+]);
 
 class CountriesService {
   constructor() {
@@ -10,12 +26,8 @@ class CountriesService {
     this.currenciesMocked = currenciesMocked;
   }
 
-  create(countryName, convertQuantity) {
-    const countryData = this.countriesMocked.find((country) => country.name === countryName);
-    const country = new Country(
-      countryData.name,
-    );
-    return countryData;
+  async createAllCountries(countryName, valueConversion) {
+    return this.findCountriesData(countryName);
   }
 
   createAllCountriesFromMock() {
@@ -32,6 +44,22 @@ class CountriesService {
 
       return country;
     });
+  }
+
+  async findCountriesData(countryName) {
+    const countriesCapital = await fetchService.fetchCountriesCapital(CountriesSet);
+    const countriesCurrency = await fetchService.fetchCountriesCurrency(CountriesSet);
+    const baseCurrency = countriesCurrency.find((country) => country.name === countryName).currency;
+    const countriesExchange = await fetchService.fetchExchangeApi(baseCurrency, countriesCurrency);
+    const weatherCapitals = await fetchService.fetchWeatherApi(countriesCapital);
+
+    return {
+      countriesCapital,
+      countriesCurrency,
+      countriesExchange,
+      weatherCapitals,
+      timezoneMocked,
+    };
   }
 
   findCurrencyValueInMock(currencyParam) {
