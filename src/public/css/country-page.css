@@ -60,19 +60,19 @@
 }
 
 .slideOutLeft {
-   animation: slideOutLeft 1.5s forwards;
+   animation: slideOutLeft 1.2s forwards;
 }
 
 .slideOutRight {
-   animation: slideOutRight 1.5s forwards;
+   animation: slideOutRight 1.2s forwards;
 }
 
 .slideOutBigLeft {
-   animation: slideOutBigLeft 1.5s forwards;
+   animation: slideOutBigLeft 1.2s forwards;
 }
 
 .slideOutBigRight {
-   animation: slideOutBigRight 1.5s forwards;
+   animation: slideOutBigRight 1.2s forwards;
 }
 
 @keyframes slideOutRight {
@@ -92,11 +92,11 @@
 @keyframes slideOutBigRight {
    33% {
       opacity: 0;
-      transform: translateX(200px);
+      transform: translateX(300px);
    }
    66%{
       opacity: 0;
-      transform: translateX(-200px);
+      transform: translateX(-300px);
    }
    100%{
       opacity: 1;
@@ -120,11 +120,11 @@
 @keyframes slideOutBigLeft {
    33% {
       opacity: 0;
-      transform: translateX(-200px);
+      transform: translateX(-300px);
    }
    66%{
       opacity: 0;
-      transform: translateX(200px);
+      transform: translateX(300px);
    }
    100%{
       opacity: 1;
@@ -132,7 +132,7 @@
 }
 
 .backgroundTransition{
-   animation: backgroundTransition 1.5s forwards;
+   animation: backgroundTransition 1s forwards;
 }
 
 @keyframes backgroundTransition {

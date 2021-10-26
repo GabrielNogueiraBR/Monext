@@ -1,5 +1,14 @@
 /* eslint-disable no-undef */
 const socket = io('http://localhost:3000/country');
+
+const Direction = {
+  BIG_LEFT: -2,
+  LEFT: -1,
+  HOME: 0,
+  RIGHT: 1,
+  BIG_RIGHT: 2,
+};
+
 let offSetInstance;
 let countryInstance;
 
@@ -12,7 +21,6 @@ let countryInstance;
  */
 function inicializeCountryConfig(offSet, countries) {
   countryInstance = countries[offSet];
-  console.log(countryInstance);
 
   const countryName = document.getElementById('country-name');
   const convertValue = document.getElementById('convert-value');
@@ -41,10 +49,21 @@ socket.on('updateCountryConfig', (countries) => {
 });
 
 socket.on('updateCountryWithOffset', (value, countries) => {
+  const lastCountryIndex = countries.length - 1;
+
+  let offSetAux = 0;
+  if ((offSetInstance === lastCountryIndex || offSetInstance === 0)
+     && (value === Direction.BIG_LEFT || value === Direction.BIG_RIGHT)) {
+    offSetAux = 1;
+  }
+
   offSetInstance += value;
 
-  if (offSetInstance < 0) offSetInstance = countries.length - 1;
-  if (offSetInstance > countries.length - 1) offSetInstance = 0;
+  if (offSetInstance < 0) {
+    offSetInstance = lastCountryIndex - offSetAux;
+  } else if (offSetInstance > lastCountryIndex) {
+    offSetInstance = 0 + offSetAux;
+  }
 
   inicializeCountryConfig(offSetInstance, countries);
 });
@@ -55,21 +74,21 @@ socket.on('updateOffSetController', (value) => {
 
   // choosing the movement
   switch (value) {
-    case -2:
+    case Direction.BIG_LEFT:
       // move big left
       infoContainer.classList.add('slideOutBigRight');
       countryContainer.classList.add('backgroundTransition');
       break;
-    case -1:
+    case Direction.LEFT:
       infoContainer.classList.add('slideOutRight');
       countryContainer.classList.add('backgroundTransition');
       break;
-    case 1:
+    case Direction.RIGHT:
       // move right
       infoContainer.classList.add('slideOutLeft');
       countryContainer.classList.add('backgroundTransition');
       break;
-    case 2:
+    case Direction.BIG_RIGHT:
       // move big right
       infoContainer.classList.add('slideOutBigLeft');
       countryContainer.classList.add('backgroundTransition');
@@ -86,5 +105,5 @@ socket.on('updateOffSetController', (value) => {
     infoContainer.classList.remove('slideOutBigRight');
     infoContainer.classList.remove('slideOutBigLeft');
     countryContainer.classList.remove('backgroundTransition');
-  }, 1500);
+  }, 1200);
 });

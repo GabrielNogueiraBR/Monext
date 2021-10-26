@@ -14,7 +14,17 @@ const sockets = {
 };
 
 // Create an offSet for controller
-let offSetController = 0;
+let offSetController = -1;
+
+function checkOffset(value) {
+  let offSetAux = 0;
+
+  if (value > listCountries.length) offSetAux = 1;
+
+  if (value > listCountries.length - 1) return 0 + offSetAux;
+  if (value < 0) return (listCountries.length - 1);
+  return value;
+}
 
 // ================ NAMESPACE FORM ================
 io.of('/form').on('connection', (socket) => {
@@ -42,12 +52,14 @@ io.of('country').on('connection', (socket) => {
   // Add connection to list of sockets
   socketsNamespace.push(socket.id);
 
-  // Declare offSet of instance page
-  const offSet = socketsNamespace.indexOf(socket.id);
-  console.log(`offSet: ${offSet}`);
-  console.log(`offSetController: ${offSetController}`);
+  offSetController = checkOffset(offSetController + 1);
   // Send country information
-  socket.emit('inicializeCountryConfig', offSet + offSetController, listCountries);
+  socket.emit('inicializeCountryConfig', offSetController, listCountries);
+
+  socket.on('disconnecting', () => {
+    socketsNamespace.pop(socket.id);
+    offSetController -= 1;
+  });
 });
 
 // ================ NAMESPACE CONTROLLER ================
@@ -65,7 +77,7 @@ io.of('controller').on('connection', (socket) => {
       io.of('country').emit('updateCountryWithOffset', value, listCountries);
     }, 500);
 
-    offSetController += value;
+    offSetController = checkOffset(offSetController + value);
   });
 
   // Remove socket from list of sockets during disconnecting
