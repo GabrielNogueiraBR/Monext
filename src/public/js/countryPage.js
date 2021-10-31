@@ -21,6 +21,8 @@ function inicializeCountryConfig(offSet, countries) {
   const dateTime = document.getElementById('datetime-country');
   const timezone = document.getElementById('timezone-country');
   const capital = document.getElementById('capital-country');
+  const flag = document.getElementById('country-flag');
+  const countryContainer = document.getElementById('country-container');
 
   countryName.innerHTML = countryInstance.name;
   convertValue.innerHTML = `${countryInstance.currency} 0000`;
@@ -28,6 +30,35 @@ function inicializeCountryConfig(offSet, countries) {
   dateTime.innerHTML = countryInstance.timezone;
   timezone.innerHTML = 'GMT -3 (COLOCAR)';
   capital.innerHTML = `0 ºC ${countryInstance.capital}`;
+  flag.style.backgroundImage = `url(${countryInstance.flag})`;
+
+  const colorThief = new ColorThief();
+  let img = new Image();
+  img.src = countryInstance.flag;
+  
+  if(img.complete){
+    setBackgroudColorFade();
+  } else {
+    img.addEventListener('load', function() {
+      setBackgroudColorFade();
+    });
+  }
+
+  function setBackgroudColorFade() {
+    let dominantColor = colorThief.getColor(img);
+    let palette = colorThief.getPalette(img);
+
+    palette = palette.filter(swatch => !whiteSwatch(swatch));
+
+    if (whiteSwatch(dominantColor))
+      dominantColor = palette[0];
+
+    countryContainer.style.background = `linear-gradient(to top,rgb(${dominantColor[0]},${dominantColor[1]},${dominantColor[2]}) 0%, #fff 80%)`;
+  }
+}
+
+function whiteSwatch(swatch){
+  return (swatch[0] > 190 && swatch[1] > 190 && swatch[2] > 190);
 }
 
 // ================ SOCKET ================
