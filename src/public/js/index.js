@@ -12,7 +12,7 @@ document.querySelector('#btn-confirm').addEventListener('click', (e) => {
   e.preventDefault();
 
   // Get values from fields
-  const country = document.getElementById('countrys').value;
+  const country = document.getElementById('countries').value;
   const valueConversion = document.getElementById('conversion-value').value;
 
   // Create an request config
