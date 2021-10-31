@@ -17,12 +17,14 @@ const sockets = {
 let offSetController = -1;
 
 function checkOffset(value) {
-  let offSetAux = 0;
+  if (value > listCountries.length) {
+    const newOffset = listCountries.length - value;
+    return newOffset < 0 ? newOffset * -1 : newOffset;
+  }
+  if (value < 0) {
+    return listCountries.length + value;
+  }
 
-  if (value > listCountries.length) offSetAux = 1;
-
-  if (value > listCountries.length - 1) return 0 + offSetAux;
-  if (value < 0) return (listCountries.length - 1);
   return value;
 }
 

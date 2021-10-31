@@ -49,20 +49,13 @@ socket.on('updateCountryConfig', (countries) => {
 });
 
 socket.on('updateCountryWithOffset', (value, countries) => {
-  const lastCountryIndex = countries.length - 1;
-
-  let offSetAux = 0;
-  if ((offSetInstance === lastCountryIndex || offSetInstance === 0)
-     && (value === Direction.BIG_LEFT || value === Direction.BIG_RIGHT)) {
-    offSetAux = 1;
-  }
-
   offSetInstance += value;
 
-  if (offSetInstance < 0) {
-    offSetInstance = lastCountryIndex - offSetAux;
-  } else if (offSetInstance > lastCountryIndex) {
-    offSetInstance = 0 + offSetAux;
+  if (offSetInstance >= countries.length) {
+    offSetInstance = countries.length - offSetInstance;
+    offSetInstance = offSetInstance < 0 ? offSetInstance * -1 : offSetInstance;
+  } else if (offSetInstance < 0) {
+    offSetInstance = countries.length + offSetInstance;
   }
 
   inicializeCountryConfig(offSetInstance, countries);
