@@ -32,9 +32,9 @@ class CountriesService {
     const countries = CountriesSet.filter((country) => country !== countryName);
     const countriesData = await this.findCountriesData(countryName, countries);
     const groupedData = this.groupDataByCountry(countriesData);
-    const contriesObject = this.buildCountryObject(groupedData, valueConversion);
+    const countriesObject = this.buildCountryObject(groupedData, valueConversion);
 
-    return contriesObject;
+    return countriesObject;
   }
 
   createAllCountriesFromMock() {
