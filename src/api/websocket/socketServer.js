@@ -46,6 +46,7 @@ io.of('country').on('connection', (socket) => {
   const offSet = socketsNamespace.indexOf(socket.id);
   console.log(`offSet: ${offSet}`);
   console.log(`offSetController: ${offSetController}`);
+
   // Send country information
   socket.emit('inicializeCountryConfig', offSet + offSetController, listCountries);
 });
