@@ -7,13 +7,24 @@ const socket = io('http://localhost:3000/form');
 
 // ================ EVENTS ================
 
+function removeMask(valueConversion) {
+  const withoutSymbol = valueConversion.split(' ')[1];
+  const withoutPunctuation = withoutSymbol.replace(/[,.]/g, '');
+
+  // Formatting the value from 5.000,25 to 5000.25 (accepted by the API)
+  const valueFormatted = [withoutPunctuation.slice(0, -2), '.', withoutPunctuation.slice(-2)].join('');
+
+  return valueFormatted;
+}
+
 // Add event to button confirm
 document.querySelector('#btn-confirm').addEventListener('click', (e) => {
   e.preventDefault();
 
   // Get values from fields
-  const country = document.getElementById('countrys').value;
-  const valueConversion = document.getElementById('conversion-value').value;
+  const country = document.getElementById('countries').value;
+  // Remove the currency mask with split
+  const valueConversion = removeMask(document.getElementById('conversion-value').value);
 
   // Create an request config
   const myRequest = {
@@ -26,7 +37,7 @@ document.querySelector('#btn-confirm').addEventListener('click', (e) => {
   };
 
   // Send request using fetch API
-  fetch('/forms/countries/create', myRequest)
+  fetch('/countries/create', myRequest)
     .then((res) => res.json())
     .then((countries) => socket.emit('updateCountries', countries)) // Update list of countries
     .then(window.location.href = '/controller'); // Redirect page
