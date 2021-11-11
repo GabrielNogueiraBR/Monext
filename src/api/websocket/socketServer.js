@@ -27,6 +27,9 @@ io.of('/form').on('connection', (socket) => {
     listCountries = countries; // Update list with User options
 
     io.of('country').emit('updateCountryConfig', listCountries); // Update all country-page by list
+
+    console.log('countries mounted 😎: ');
+    listCountries.map((e) => console.log(`${listCountries.indexOf(e)} - ${e.name}`));
   });
 
   // Remove socket from list of sockets during disconnecting
@@ -44,8 +47,8 @@ io.of('country').on('connection', (socket) => {
 
   // Declare offSet of instance page
   const offSet = socketsNamespace.indexOf(socket.id);
-  console.log(`offSet: ${offSet}`);
-  console.log(`offSetController: ${offSetController}`);
+  // console.log(`offSet: ${offSet}`);
+  // console.log(`offSetController: ${offSetController}`);
 
   // Send country information
   socket.emit('inicializeCountryConfig', offSet + offSetController, listCountries);

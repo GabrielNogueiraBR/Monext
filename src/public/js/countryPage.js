@@ -3,17 +3,21 @@ const socket = io('http://localhost:3000/country');
 let offSetInstance;
 let offSetController = 0;
 let countryInstance;
+let listCountries;
 
-/**
- * Function responsible for receiving an offset and a list of
- * country-type objects and creating the screen based on past data.
+function calculateOffSet(value) {
+  if (offSetController + value + offSetInstance < 0) {
+    return calculateOffSet(value + listCountries.length);
+  }
+  if (offSetController + value + offSetInstance >= listCountries.length) {
+    return calculateOffSet(value - listCountries.length);
+  }
+  return value;
+}
 
- * @param {Number} offSet
- * @param {Object} countries
- */
-function inicializeCountryConfig(offSet, countries) {
+function displayCountry(offSet, countries) {
+  listCountries = countries;
   countryInstance = countries[offSet];
-  console.log(countryInstance);
 
   const countryName = document.getElementById('country-name');
   const convertValue = document.getElementById('convert-value');
@@ -30,15 +34,20 @@ function inicializeCountryConfig(offSet, countries) {
   capital.innerHTML = `0 ºC ${countryInstance.capital}`;
 }
 
+function inicializeCountryConfig(offSet, countries) {
+  listCountries = countries;
+  offSetInstance = 0;
+  offSetInstance = calculateOffSet(offSet);
+  displayCountry(offSetInstance, listCountries);
+}
+
 // ================ SOCKET ================
 
-socket.on('inicializeCountryConfig', (offSet, countries) => {
-  offSetInstance = offSet;
-  inicializeCountryConfig(offSet, countries);
-});
+socket.on('inicializeCountryConfig', (offSet, countries) => inicializeCountryConfig(offSet, countries));
 
 socket.on('updateCountryConfig', (countries) => {
-  inicializeCountryConfig(offSetInstance, countries);
+  listCountries = countries;
+  displayCountry(offSetInstance, countries);
 });
 
 socket.on('updateOffSetController', (value) => {
@@ -47,24 +56,30 @@ socket.on('updateOffSetController', (value) => {
     case -2:
       // move big left
       console.log('move big left');
+      offSetController += calculateOffSet(value);
+      displayCountry(offSetController + offSetInstance, listCountries);
       break;
     case -1:
       // move left
       console.log('move left');
+      offSetController += calculateOffSet(value);
+      displayCountry(offSetController + offSetInstance, listCountries);
       break;
     case 1:
       // move right
       console.log('move right');
+      offSetController += calculateOffSet(value);
+      displayCountry(offSetController + offSetInstance, listCountries);
       break;
     case 2:
       // move big right
       console.log('move big right');
+      offSetController += calculateOffSet(value);
+      displayCountry(offSetController + offSetInstance, listCountries);
       break;
     default:
       // move to home
       console.log('move to home');
       break;
   }
-
-  offSetController += value;
 });

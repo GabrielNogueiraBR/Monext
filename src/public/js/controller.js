@@ -34,4 +34,5 @@ document.querySelector('#button-big-right').addEventListener('click', (event) =>
 document.querySelector('#button-home').addEventListener('click', (event) => {
   count *= 0;
   sendOffSetController(0);
+  window.location.href = '/home'; // redirect to home page
 });

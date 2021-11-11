@@ -21,24 +21,28 @@ function removeMask(valueConversion) {
 document.querySelector('#btn-confirm').addEventListener('click', (e) => {
   e.preventDefault();
 
-  // Get values from fields
-  const country = document.getElementById('countries').value;
-  // Remove the currency mask with split
-  const valueConversion = removeMask(document.getElementById('conversion-value').value);
+  ((async) => {
+    // Get values from fields
+    const country = document.getElementById('countries').value;
+    // Remove the currency mask with split
+    const valueConversion = removeMask(document.getElementById('conversion-value').value);
 
-  // Create an request config
-  const myRequest = {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json, text/plain, */*',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ country, valueConversion }),
-  };
+    // Create an request config
+    const myRequest = {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ country, valueConversion }),
+    };
 
-  // Send request using fetch API
-  fetch('/countries/create', myRequest)
-    .then((res) => res.json())
-    .then((countries) => socket.emit('updateCountries', countries)) // Update list of countries
-    .then(window.location.href = '/controller'); // Redirect page
+    // Send request using fetch API
+    fetch('/countries/create', myRequest)
+      .then((res) => res.json())
+      .then((countries) => socket.emit('updateCountries', countries)) // Update list of countries
+      .then(() => {
+        window.location.href = '/controller';
+      }); // Redirect page
+  })();
 });
