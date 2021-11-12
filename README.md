@@ -39,7 +39,7 @@ node -v
 2. Install npm packages
 `npm install`
 
-3. Fill the `.env` file (consult the secrets with the project maintainer)
+3. Fill the `.env` file (secrets are in .env.schema)
 ```
 PORT=
 
