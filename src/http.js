@@ -12,7 +12,7 @@ app.use(express.json()); // Middleware parses incoming requests with JSON payloa
 
 // Health check
 app.get('/', (req, res) => {
-  res.status(200).send('ok');
+  res.status(200).json('ok');
 });
 
 // ================ STATIC FILES ================

@@ -17,6 +17,10 @@ function calculateOffSet(value) {
   return value;
 }
 
+function whiteSwatch(swatch) {
+  return (swatch[0] > 190 && swatch[1] > 190 && swatch[2] > 190);
+}
+
 function displayCountry(offSet, countries) {
   listCountries = countries;
   countryInstance = countries[offSet];
@@ -39,13 +43,15 @@ function displayCountry(offSet, countries) {
   flag.style.backgroundImage = `url(${countryInstance.flag})`;
 
   const colorThief = new ColorThief();
-  let img = new Image();
+  const img = new Image();
   img.src = countryInstance.flag;
-  
-  if(img.complete){
+
+  if (img.complete) {
+    // eslint-disable-next-line no-use-before-define
     setBackgroudColorFade();
   } else {
-    img.addEventListener('load', function() {
+    img.addEventListener('load', () => {
+      // eslint-disable-next-line no-use-before-define
       setBackgroudColorFade();
     });
   }
@@ -54,17 +60,14 @@ function displayCountry(offSet, countries) {
     let dominantColor = colorThief.getColor(img);
     let palette = colorThief.getPalette(img);
 
-    palette = palette.filter(swatch => !whiteSwatch(swatch));
+    palette = palette.filter((swatch) => !whiteSwatch(swatch));
 
-    if (whiteSwatch(dominantColor))
-      dominantColor = palette[0];
+    // eslint-disable-next-line prefer-destructuring
+    if (whiteSwatch(dominantColor)) dominantColor = palette[0];
 
+    // eslint-disable-next-line max-len
     countryContainer.style.background = `linear-gradient(to top,rgb(${dominantColor[0]},${dominantColor[1]},${dominantColor[2]}) 0%, #fff 80%)`;
   }
-}
-
-function whiteSwatch(swatch){
-  return (swatch[0] > 190 && swatch[1] > 190 && swatch[2] > 190);
 }
 
 function inicializeCountryConfig(offSet, countries) {
