@@ -1,5 +1,7 @@
 /* eslint-disable no-undef */
-const socket = io('http://localhost:3000/country');
+const url = `${window.location.protocol}//${window.location.hostname}:${window.location.port}`;
+const socket = io(`${url}/country`);
+
 let offSetInstance;
 let offSetController = 0;
 let countryInstance;

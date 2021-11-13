@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 /* eslint-disable no-shadow */
-const socket = io('http://localhost:3000/controller');
+const url = `${window.location.protocol}//${window.location.hostname}:${window.location.port}`;
+const socket = io(`${url}/controller`);
 
 let count = 0;
 

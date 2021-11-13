@@ -3,7 +3,8 @@
 // ================ SOCKET ================
 
 // Connection with socket server
-const socket = io('http://localhost:3000/form');
+const url = `${window.location.protocol}//${window.location.hostname}:${window.location.port}`;
+const socket = io(`${url}/form`);
 
 // ================ EVENTS ================
 
