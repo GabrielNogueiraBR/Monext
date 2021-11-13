@@ -17,6 +17,7 @@
     "start": "node ./src/server.js",
     "start:docker": "docker build -t monext . && docker run -it -p 3000:3000 monext",
     "dev": "nodemon",
+    "test": "echo error no test specified",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix . --ignore-pattern './node_modules'",
     "lint-staged": "lint-staged",
