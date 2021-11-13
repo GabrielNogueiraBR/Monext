@@ -39,8 +39,10 @@ node -v
 2. Install npm packages
 `npm install`
 
-3. Fill the `.env` file (secrets are in .env.schema)
+3. Fill the `.env` file (consult the secrets with the project maintainer)
 ```
+PORT=
+
 EXCHANGE_API_URL=https://exchange-rates.abstractapi.com/v1/live 
 EXCHANGE_API_KEY=
 TIMEZONE_API_URL=https://timezone.abstractapi.com/v1/current_time
@@ -52,8 +54,8 @@ GET_POSTMAN_API_URL=https://countriesnow.space/api/v0.1
 
 4. Starting the project
 ```
-    npm start
-    server is running on *:3000
+npm start
+server is running on *:3000
 ```
 
 ## 📦 External packages
