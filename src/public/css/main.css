@@ -122,3 +122,13 @@ button:hover {
 h1{
    margin: 0;
 }
+
+.select-countries {
+   background-color: #fff;
+   cursor: pointer;
+}
+
+select option:checked {
+   background-color: #e6e6e6 !important; /* for IE */
+   color: #ff0d82 !important;
+}

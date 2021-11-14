@@ -52,6 +52,10 @@ io.of('country').on('connection', (socket) => {
 
   // Send country information
   socket.emit('inicializeCountryConfig', offSet + offSetController, listCountries);
+
+  socket.on('transitionCompleted', () => {
+    io.of('controller').emit('transitionCompleted');
+  });
 });
 
 // ================ NAMESPACE CONTROLLER ================
