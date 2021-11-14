@@ -15,8 +15,8 @@ const CountriesSet = [
   'Canada',
   'China',
   'Italy',
-  'Japan',
   'Mexico',
+  'Japan',
   'Russia',
   'United Kingdom',
   'United States',
@@ -29,9 +29,8 @@ class CountriesService {
   }
 
   async createAllCountries(countryName, valueConversion) {
-    const countries = CountriesSet.filter((country) => country !== countryName);
-    const countriesData = await this.findCountriesData(countryName, countries);
-    const groupedData = this.groupDataByCountry(countriesData);
+    const countriesData = await this.findCountriesData(countryName, CountriesSet);
+    const groupedData = this.groupDataByCountry(countryName, countriesData);
     const countriesObject = this.buildCountryObject(groupedData, valueConversion);
 
     return countriesObject;
@@ -59,7 +58,8 @@ class CountriesService {
       const { flag, isoLanguageCode } = countriesMocked.find((mock) => mock.name === data.country);
       const { currencyName } = currenciesMocked.find((mock) => mock.countryName === data.country);
       const valueConverted = valueConversion * data.exchange;
-      const date = moment().tz(timezone.tz).format('YYYY-MM-DD HH:mm:SS');
+      const date = moment().tz(timezone.tz);
+      console.log(`${data.country} = ${new Date(date).toLocaleString(isoLanguageCode)}`);
 
       const country = new Country(
         data.country,
@@ -78,7 +78,7 @@ class CountriesService {
     return countries;
   }
 
-  groupDataByCountry(countriesData) {
+  groupDataByCountry(selectedCountryName, countriesData) {
     const grouped = [];
 
     // countriesCapital is defined in findCountriesData method.
@@ -86,7 +86,15 @@ class CountriesService {
       const aux = {};
 
       const { currency: currencyAcronym } = countriesData.countriesCurrency.find((country) => country.name === data.name);
-      const { exchange } = countriesData.countriesExchange.find((country) => country.name === data.name);
+
+      let exchange;
+      if (data.name === selectedCountryName) {
+        exchange = 1;
+      } else {
+        const country = countriesData.countriesExchange.find((c) => c.name === data.name);
+        exchange = country.exchange;
+      }
+
       const weather = countriesData.weatherCapitals.find((country) => {
         let countryName = country.country;
         if (country.country === 'United States of America') countryName = 'United States'; // the 'diferentão'
@@ -116,7 +124,7 @@ class CountriesService {
 
   async findCountriesData(countryName, countries) {
     const countriesCapital = await fetchService.fetchCountriesCapital(countries);
-    const countriesCurrency = await fetchService.fetchCountriesCurrency(CountriesSet);
+    const countriesCurrency = await fetchService.fetchCountriesCurrency(countries);
     const baseCurrency = countriesCurrency.find((country) => country.name === countryName).currency;
     const countriesExchange = await fetchService.fetchExchangeApi(baseCurrency, countriesCurrency);
     const weatherCapitals = await fetchService.fetchWeatherApi(countriesCapital);

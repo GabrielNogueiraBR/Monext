@@ -7,7 +7,7 @@ const socket = io(`${url}/controller`);
 let transitionCompleted = true;
 
 function sendOffSetController(value) {
-  if(transitionCompleted){
+  if (transitionCompleted) {
     socket.emit('sendOffSetController', value);
     transitionCompleted = false;
   }
