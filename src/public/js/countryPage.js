@@ -136,5 +136,6 @@ socket.on('updateOffSetController', (value) => {
     infoContainer.classList.remove('slideOutBigRight');
     infoContainer.classList.remove('slideOutBigLeft');
     countryContainer.classList.remove('backgroundTransition');
+    socket.emit('transitionCompleted');
   }, 1200);
 });
