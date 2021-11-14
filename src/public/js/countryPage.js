@@ -5,6 +5,14 @@ let offSetController = 0;
 let countryInstance;
 let listCountries;
 
+const Direction = {
+  BIG_LEFT: -2,
+  LEFT: -1,
+  HOME: 0,
+  RIGHT: 1,
+  BIG_RIGHT: 2,
+};
+
 function calculateOffSet(value) {
   if (offSetController + value + offSetInstance < 0) {
     return calculateOffSet(value + listCountries.length);
@@ -82,35 +90,51 @@ socket.on('updateCountryConfig', (countries) => {
 });
 
 socket.on('updateOffSetController', (value) => {
+  const infoContainer = document.getElementById('info-container');
+  const countryContainer = document.getElementById('country-container');
+
   // choosing the movement
   switch (value) {
-    case -2:
+    case Direction.BIG_LEFT:
       // move big left
       console.log('move big left');
-      offSetController += calculateOffSet(value);
-      displayCountry(offSetController + offSetInstance, listCountries);
+      infoContainer.classList.add('slideOutBigRight');
+      countryContainer.classList.add('backgroundTransition');
       break;
-    case -1:
+    case Direction.LEFT:
       // move left
       console.log('move left');
-      offSetController += calculateOffSet(value);
-      displayCountry(offSetController + offSetInstance, listCountries);
+      infoContainer.classList.add('slideOutRight');
+      countryContainer.classList.add('backgroundTransition');
       break;
-    case 1:
+    case Direction.RIGHT:
       // move right
-      console.log('move right');
-      offSetController += calculateOffSet(value);
-      displayCountry(offSetController + offSetInstance, listCountries);
+      console.log('move right');      
+      infoContainer.classList.add('slideOutLeft');
+      countryContainer.classList.add('backgroundTransition');
       break;
-    case 2:
+    case Direction.BIG_RIGHT:
       // move big right
       console.log('move big right');
-      offSetController += calculateOffSet(value);
-      displayCountry(offSetController + offSetInstance, listCountries);
+      infoContainer.classList.add('slideOutBigLeft');
+      countryContainer.classList.add('backgroundTransition');           
       break;
     default:
       // move to home
       console.log('move to home');
       break;
   }
+
+  setTimeout(() => { 
+    offSetController += calculateOffSet(value);
+    displayCountry(offSetController + offSetInstance, listCountries);
+  }, 500);
+   
+  setTimeout(() => {
+    infoContainer.classList.remove('slideOutRight');
+    infoContainer.classList.remove('slideOutLeft');
+    infoContainer.classList.remove('slideOutBigRight');
+    infoContainer.classList.remove('slideOutBigLeft');
+    countryContainer.classList.remove('backgroundTransition');
+  }, 1200);
 });
