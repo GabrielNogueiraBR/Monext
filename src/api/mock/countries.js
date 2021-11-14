@@ -2,6 +2,7 @@ const countriesMocked = [
   {
     name: 'Brazil',
     iso2Code: 'BR',
+    isoLanguageCode: 'pt-BR',
     capital: 'Brasilia',
     flag: '../assets/images/flags/brazil-flag.svg',
     currency: 'BRL',
@@ -10,6 +11,7 @@ const countriesMocked = [
   {
     name: 'Russia',
     iso2Code: 'RU',
+    isoLanguageCode: 'ru-RU',
     capital: 'Moscow',
     flag: '../assets/images/flags/russia-flag.svg',
     currency: 'RUB',
@@ -18,6 +20,7 @@ const countriesMocked = [
   {
     name: 'Japan',
     iso2Code: 'JP',
+    isoLanguageCode: 'ja-JA',
     capital: 'Tokyo',
     flag: '../assets/images/flags/japan-flag.svg',
     currency: 'JPY',
@@ -26,6 +29,7 @@ const countriesMocked = [
   {
     name: 'Italy',
     iso2Code: 'IT',
+    isoLanguageCode: 'it-IT',
     capital: 'Rome',
     flag: '../assets/images/flags/italy-flag.svg',
     currency: 'EUR',
@@ -34,6 +38,7 @@ const countriesMocked = [
   {
     name: 'United States',
     iso2Code: 'US',
+    isoLanguageCode: 'en-US',
     capital: 'Washington',
     flag: '../assets/images/flags/unitedstates-flag.svg',
     currency: 'USD',
@@ -42,6 +47,7 @@ const countriesMocked = [
   {
     name: 'United Kingdom',
     iso2Code: 'GB',
+    isoLanguageCode: 'en-GB',
     capital: 'London',
     flag: '../assets/images/flags/unitedkingdom-flag.svg',
     currency: 'GBP',
@@ -50,6 +56,7 @@ const countriesMocked = [
   {
     name: 'Mexico',
     iso2Code: 'MX',
+    isoLanguageCode: 'es-MX',
     capital: 'Mexico City',
     flag: '../assets/images/flags/mexico-flag.svg',
     currency: 'MXN',
@@ -58,6 +65,7 @@ const countriesMocked = [
   {
     name: 'China',
     iso2Code: 'CN',
+    isoLanguageCode: 'zh-hk',
     capital: 'Beijing',
     flag: '../assets/images/flags/china-flag.svg',
     currency: 'CNY',
@@ -66,6 +74,7 @@ const countriesMocked = [
   {
     name: 'Canada',
     iso2Code: 'CA',
+    isoLanguageCode: 'en-ca',
     capital: 'Ottawa',
     flag: '../assets/images/flags/canada-flag.svg',
     currency: 'CAD',
@@ -74,6 +83,7 @@ const countriesMocked = [
   {
     name: 'Argentina',
     iso2Code: 'AR',
+    isoLanguageCode: 'es-ar',
     capital: 'Buenos Aires',
     flag: '../assets/images/flags/argentina-flag.svg',
     currency: 'ARS',

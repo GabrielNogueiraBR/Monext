@@ -56,17 +56,19 @@ class CountriesService {
   buildCountryObject(countriesData, valueConversion) {
     const countries = countriesData.map((data) => {
       const { timezone, weather } = data;
-      const { flag } = countriesMocked.find((mock) => mock.name === data.country);
+      const { flag, isoLanguageCode } = countriesMocked.find((mock) => mock.name === data.country);
+      const { currencyName } = currenciesMocked.find((mock) => mock.countryName === data.country);
       const valueConverted = valueConversion * data.exchange;
       const date = moment().tz(timezone.tz).format('YYYY-MM-DD HH:mm:SS');
 
       const country = new Country(
         data.country,
         data.capital,
-        data.currency,
-        valueConverted,
+        data.currencyAcronym,
+        currencyName,
+        valueConverted.toFixed(2),
         flag,
-        date,
+        new Date(date).toLocaleString(isoLanguageCode),
         timezone.gmt,
         weather.temp_c,
       );
@@ -83,7 +85,7 @@ class CountriesService {
     countriesData.countriesCapital.forEach((data) => {
       const aux = {};
 
-      const { currency } = countriesData.countriesCurrency.find((country) => country.name === data.name);
+      const { currency: currencyAcronym } = countriesData.countriesCurrency.find((country) => country.name === data.name);
       const { exchange } = countriesData.countriesExchange.find((country) => country.name === data.name);
       const weather = countriesData.weatherCapitals.find((country) => {
         let countryName = country.country;
@@ -94,7 +96,7 @@ class CountriesService {
 
       aux.country = data.name;
       aux.capital = data.capital;
-      aux.currency = currency;
+      aux.currencyAcronym = currencyAcronym;
       aux.exchange = exchange;
       aux.weather = {
         temp_c: weather.temp_c,

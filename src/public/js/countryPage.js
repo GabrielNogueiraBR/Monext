@@ -42,13 +42,13 @@ function displayCountry(offSet, countries) {
   const flag = document.getElementById('country-flag');
   const countryContainer = document.getElementById('country-container');
 
-  countryName.innerHTML = countryInstance.name;
-  convertValue.innerHTML = `${countryInstance.currency} 0000`;
-  currencyName.innerHTML = `${countryInstance.currency} - nome completo`;
-  dateTime.innerHTML = countryInstance.timezone;
-  timezone.innerHTML = 'GMT -3 (COLOCAR)';
-  capital.innerHTML = `0 ºC ${countryInstance.capital}`;
   flag.style.backgroundImage = `url(${countryInstance.flag})`;
+  countryName.innerHTML = countryInstance.name;
+  convertValue.innerHTML = `${countryInstance.currencyAcronym} ${countryInstance.exchange}`;
+  currencyName.innerHTML = `${countryInstance.currencyAcronym} - ${countryInstance.currencyName}`;
+  dateTime.innerHTML = countryInstance.date;
+  timezone.innerHTML = `GMT ${countryInstance.gmt}`;
+  capital.innerHTML = `${countryInstance.temperature} °C ${countryInstance.capital}`;
 
   const colorThief = new ColorThief();
   const img = new Image();
@@ -114,7 +114,7 @@ socket.on('updateOffSetController', (value) => {
       break;
     case Direction.RIGHT:
       // move right
-      console.log('move right');      
+      console.log('move right');
       infoContainer.classList.add('slideOutLeft');
       countryContainer.classList.add('backgroundTransition');
       break;
@@ -122,7 +122,7 @@ socket.on('updateOffSetController', (value) => {
       // move big right
       console.log('move big right');
       infoContainer.classList.add('slideOutBigLeft');
-      countryContainer.classList.add('backgroundTransition');           
+      countryContainer.classList.add('backgroundTransition');
       break;
     default:
       // move to home
@@ -130,11 +130,11 @@ socket.on('updateOffSetController', (value) => {
       break;
   }
 
-  setTimeout(() => { 
+  setTimeout(() => {
     offSetController += calculateOffSet(value);
     displayCountry(offSetController + offSetInstance, listCountries);
   }, 500);
-   
+
   setTimeout(() => {
     infoContainer.classList.remove('slideOutRight');
     infoContainer.classList.remove('slideOutLeft');
