@@ -23,33 +23,12 @@ const CountriesSet = [
 ];
 
 class CountriesService {
-  constructor() {
-    this.countriesMocked = countriesMocked;
-    this.currenciesMocked = currenciesMocked;
-  }
-
   async createAllCountries(countryName, valueConversion) {
     const countriesData = await this.findCountriesData(countryName, CountriesSet);
     const groupedData = this.groupDataByCountry(countryName, countriesData);
     const countriesObject = this.buildCountryObject(groupedData, valueConversion);
 
     return countriesObject;
-  }
-
-  createAllCountriesFromMock() {
-    // Return array of Country objects
-    return this.countriesMocked.map((mock) => {
-      const country = new Country();
-      country.name = mock.name;
-      country.capital = mock.capital;
-      country.symbol = mock.iso2Code;
-      country.flag = mock.flag;
-      country.currency = mock.currency;
-      country.timezone = mock.timezone;
-      country.temperature = 0;
-
-      return country;
-    });
   }
 
   buildCountryObject(countriesData, valueConversion) {
@@ -99,7 +78,7 @@ class CountriesService {
         if (country.country === 'United States of America') countryName = 'United States'; // the 'diferentão'
         return countryName === data.name;
       });
-      const timezoneData = countriesData.timezoneMocked.find((country) => country.name === data.name);
+      const timezoneData = timezoneMocked.find((mock) => mock.countryName === data.name);
 
       aux.country = data.name;
       aux.capital = data.capital;
@@ -133,12 +112,11 @@ class CountriesService {
       countriesCurrency,
       countriesExchange,
       weatherCapitals,
-      timezoneMocked,
     };
   }
 
   findCurrencyValueInMock(currencyParam) {
-    return this.currenciesMocked.data[currencyParam];
+    return currenciesMocked.data[currencyParam];
   }
 }
 

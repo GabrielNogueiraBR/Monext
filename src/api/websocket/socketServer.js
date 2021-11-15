@@ -4,11 +4,11 @@ const { CountriesService } = require('../services/countriesService');
 const serviceCountries = new CountriesService(); // Create service country
 
 // Create an list of countries by default
-let listCountries = serviceCountries.createAllCountriesFromMock();
+let listCountries = [];
 
 // Create an list of sockets by type
 const sockets = {
-  form: [],
+  home: [],
   country: [],
   controller: [],
 };
@@ -17,8 +17,8 @@ const sockets = {
 let offSetController = 0;
 
 // ================ NAMESPACE FORM ================
-io.of('/form').on('connection', (socket) => {
-  const socketsNamespace = sockets.form;
+io.of('/home').on('connection', (socket) => {
+  const socketsNamespace = sockets.home;
 
   // Add connection to list of sockets
   socketsNamespace.push(socket.id);
