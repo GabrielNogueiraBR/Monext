@@ -22,7 +22,7 @@ function removeMask(valueConversion) {
 document.querySelector('#btn-confirm').addEventListener('click', (e) => {
   e.preventDefault();
 
-  ((async) => {
+  (async () => {
     // Get values from fields
     const country = document.getElementById('countries').value;
     // Remove the currency mask with split
@@ -43,7 +43,10 @@ document.querySelector('#btn-confirm').addEventListener('click', (e) => {
       .then((res) => res.json())
       .then((countries) => socket.emit('updateCountries', countries)) // Update list of countries
       .then(() => {
-        window.location.href = '/controller';
-      }); // Redirect page
+        window.open(`${url}/country-page`, '_blank', 'height=705,width=430'); // Open country page on new window
+      })
+      .then(() => {
+        window.location.href = '/controller'; // Redirect page
+      });
   })();
 });
