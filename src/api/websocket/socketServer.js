@@ -1,10 +1,9 @@
 const { io } = require('../../http');
-const { CountriesService } = require('../services/countriesService');
 
-const serviceCountries = new CountriesService(); // Create service country
+const countryPageMock = require('../mock/country-page');
 
 // Create an list of countries by default
-let listCountries = [];
+let listCountries = countryPageMock;
 
 // Create an list of sockets by type
 const sockets = {
