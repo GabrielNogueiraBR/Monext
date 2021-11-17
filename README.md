@@ -18,7 +18,7 @@ Monext is a multiscreen application that redefines the way you check into conver
 At first, we’ll have a controller, that will need to have an input of the amount of Money that you will convert. The currency will be decided after you choose your country. For example, if you choose Brazil, the currency will be BRL, if you choose United States, USD, and so on.
 Then, it will look really similar to Liquid Galaxy. It will have a controller, and some screens with the information of the countries. By using the controller, you will be able to decide if you want to go to the next screen, to go back one, go to the last one or the first. The controller will also give you an option that will be able to go back to the homepage, and define again the amount of Money and the country that will be used as a base.
 
-# 👀 App Preview
+# 👀 App Preview (https://monext.herokuapp.com/home)
 <a href="https://www.figma.com/file/huI74oLZX9039WjZddKyIg/?node-id=103%3A2"><img alt="Qries" src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"></a> - is used to prototype the application screens (click on FIGMA to view project prototype).
 </br>
 ![monext_preview](https://user-images.githubusercontent.com/69533533/141710933-5b845c99-5ef7-4c40-aa08-9b30e3acb704.gif)
