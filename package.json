@@ -17,6 +17,7 @@
     "start": "node ./src/server.js",
     "start:docker": "docker build -t monext . && docker run -it -p 3000:3000 monext",
     "dev": "nodemon",
+    "test": "jest --verbose --forceExit --passWithNoTests",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix . --ignore-pattern './node_modules'",
     "lint-staged": "lint-staged",
@@ -45,8 +46,10 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.24.2",
     "husky": "^7.0.2",
+    "jest": "^27.3.1",
     "lint-staged": "^11.1.2",
-    "nodemon": "^2.0.13"
+    "nodemon": "^2.0.13",
+    "supertest": "^6.1.6"
   },
   "config": {
     "commitizen": {

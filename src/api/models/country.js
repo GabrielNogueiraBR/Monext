@@ -1,9 +1,10 @@
 class Country {
-  constructor(name, capital, currency, exchange, flag, date, gmt, temperature) {
+  constructor(name, capital, currencyAcronym, currencyName, exchange, flag, date, gmt, temperature) {
     this.flag = flag;
     this.name = name;
     this.exchange = exchange;
-    this.currency = currency;
+    this.currencyAcronym = currencyAcronym;
+    this.currencyName = currencyName;
     this.date = date;
     this.gmt = gmt;
     this.temperature = temperature;

@@ -1,5 +1,7 @@
 /* eslint-disable no-undef */
-const socket = io('http://localhost:3000/country');
+const url = `${window.location.protocol}//${window.location.hostname}:${window.location.port}`;
+const socket = io(`${url}/country`);
+
 let offSetInstance;
 let offSetController = 0;
 let countryInstance;
@@ -23,6 +25,10 @@ function calculateOffSet(value) {
   return value;
 }
 
+function whiteSwatch(swatch) {
+  return (swatch[0] > 190 && swatch[1] > 190 && swatch[2] > 190);
+}
+
 function displayCountry(offSet, countries) {
   listCountries = countries;
   countryInstance = countries[offSet];
@@ -36,22 +42,24 @@ function displayCountry(offSet, countries) {
   const flag = document.getElementById('country-flag');
   const countryContainer = document.getElementById('country-container');
 
-  countryName.innerHTML = countryInstance.name;
-  convertValue.innerHTML = `${countryInstance.currency} 0000`;
-  currencyName.innerHTML = `${countryInstance.currency} - nome completo`;
-  dateTime.innerHTML = countryInstance.timezone;
-  timezone.innerHTML = 'GMT -3 (COLOCAR)';
-  capital.innerHTML = `0 ºC ${countryInstance.capital}`;
   flag.style.backgroundImage = `url(${countryInstance.flag})`;
+  countryName.innerHTML = countryInstance.name;
+  convertValue.innerHTML = `${countryInstance.currencyAcronym} ${countryInstance.exchange}`;
+  currencyName.innerHTML = `${countryInstance.currencyAcronym} - ${countryInstance.currencyName}`;
+  dateTime.innerHTML = countryInstance.date;
+  timezone.innerHTML = `GMT ${countryInstance.gmt}`;
+  capital.innerHTML = `${countryInstance.temperature} °C ${countryInstance.capital}`;
 
   const colorThief = new ColorThief();
-  let img = new Image();
+  const img = new Image();
   img.src = countryInstance.flag;
-  
-  if(img.complete){
+
+  if (img.complete) {
+    // eslint-disable-next-line no-use-before-define
     setBackgroudColorFade();
   } else {
-    img.addEventListener('load', function() {
+    img.addEventListener('load', () => {
+      // eslint-disable-next-line no-use-before-define
       setBackgroudColorFade();
     });
   }
@@ -60,17 +68,14 @@ function displayCountry(offSet, countries) {
     let dominantColor = colorThief.getColor(img);
     let palette = colorThief.getPalette(img);
 
-    palette = palette.filter(swatch => !whiteSwatch(swatch));
+    palette = palette.filter((swatch) => !whiteSwatch(swatch));
 
-    if (whiteSwatch(dominantColor))
-      dominantColor = palette[0];
+    // eslint-disable-next-line prefer-destructuring
+    if (whiteSwatch(dominantColor)) dominantColor = palette[0];
 
+    // eslint-disable-next-line max-len
     countryContainer.style.background = `linear-gradient(to top,rgb(${dominantColor[0]},${dominantColor[1]},${dominantColor[2]}) 0%, #fff 80%)`;
   }
-}
-
-function whiteSwatch(swatch){
-  return (swatch[0] > 190 && swatch[1] > 190 && swatch[2] > 190);
 }
 
 function inicializeCountryConfig(offSet, countries) {
@@ -109,7 +114,7 @@ socket.on('updateOffSetController', (value) => {
       break;
     case Direction.RIGHT:
       // move right
-      console.log('move right');      
+      console.log('move right');
       infoContainer.classList.add('slideOutLeft');
       countryContainer.classList.add('backgroundTransition');
       break;
@@ -117,7 +122,7 @@ socket.on('updateOffSetController', (value) => {
       // move big right
       console.log('move big right');
       infoContainer.classList.add('slideOutBigLeft');
-      countryContainer.classList.add('backgroundTransition');           
+      countryContainer.classList.add('backgroundTransition');
       break;
     default:
       // move to home
@@ -125,11 +130,11 @@ socket.on('updateOffSetController', (value) => {
       break;
   }
 
-  setTimeout(() => { 
+  setTimeout(() => {
     offSetController += calculateOffSet(value);
     displayCountry(offSetController + offSetInstance, listCountries);
   }, 500);
-   
+
   setTimeout(() => {
     infoContainer.classList.remove('slideOutRight');
     infoContainer.classList.remove('slideOutLeft');

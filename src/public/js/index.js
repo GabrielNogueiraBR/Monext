@@ -3,7 +3,8 @@
 // ================ SOCKET ================
 
 // Connection with socket server
-const socket = io('http://localhost:3000/form');
+const url = `${window.location.protocol}//${window.location.hostname}:${window.location.port}`;
+const socket = io(`${url}/home`);
 
 // ================ EVENTS ================
 
@@ -21,7 +22,7 @@ function removeMask(valueConversion) {
 document.querySelector('#btn-confirm').addEventListener('click', (e) => {
   e.preventDefault();
 
-  ((async) => {
+  (async () => {
     // Get values from fields
     const country = document.getElementById('countries').value;
     // Remove the currency mask with split
@@ -42,7 +43,7 @@ document.querySelector('#btn-confirm').addEventListener('click', (e) => {
       .then((res) => res.json())
       .then((countries) => socket.emit('updateCountries', countries)) // Update list of countries
       .then(() => {
-        window.location.href = '/controller';
-      }); // Redirect page
+        window.location.href = '/controller'; // Redirect page
+      });
   })();
 });
