@@ -28,7 +28,7 @@ io.of('/home').on('connection', (socket) => {
     io.of('country').emit('updateCountryConfig', listCountries); // Update all country-page by list
 
     console.log('countries mounted 😎: ');
-    listCountries.map((e) => console.log(`${listCountries.indexOf(e)} - ${e.name}`));
+    if (Array.isArray(listCountries)) { listCountries.map((e) => console.log(`${listCountries.indexOf(e)} - ${e.name}`)); }
   });
 
   // Remove socket from list of sockets during disconnecting
