@@ -15,7 +15,7 @@
   "homepage": "https://github.com/GabrielNogueiraBR/Monext#readme",
   "scripts": {
     "start": "node ./src/server.js",
-    "start:docker": "docker build -t monext . && docker run -it -p 3000:3000 monext",
+    "start:docker": "docker build -t monext . && docker run --rm -it -p 3000:3000 monext",
     "dev": "nodemon",
     "test": "jest --verbose --forceExit --passWithNoTests",
     "lint": "eslint ./src",
