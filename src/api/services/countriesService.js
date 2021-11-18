@@ -37,7 +37,7 @@ class CountriesService {
       const { flag, isoLanguageCode } = countriesMocked.find((mock) => mock.name === data.country);
       const { currencyName } = currenciesMocked.find((mock) => mock.countryName === data.country);
       const valueConverted = valueConversion * data.exchange;
-      const date = moment().tz(timezone.tz);
+      const date = moment().tz(timezone.tz).locale(isoLanguageCode);
 
       const country = new Country(
         data.country,
@@ -46,7 +46,7 @@ class CountriesService {
         currencyName,
         valueConverted.toFixed(2),
         flag,
-        new Date(date).toLocaleString(isoLanguageCode),
+        date,
         timezone.gmt,
         weather.temp_c,
       );
