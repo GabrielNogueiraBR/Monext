@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this */
-const moment = require('moment-timezone');
+const moment = require('moment');
 
 const FetchDataService = require('../helpers/fetchDataService');
 const countriesMocked = require('../mock/countries');
@@ -27,17 +27,16 @@ class CountriesService {
     const countriesData = await this.findCountriesData(countryName, CountriesSet);
     const groupedData = this.groupDataByCountry(countryName, countriesData);
     const countriesObject = this.buildCountryObject(groupedData, valueConversion);
-
     return countriesObject;
   }
 
   buildCountryObject(countriesData, valueConversion) {
     const countries = countriesData.map((data) => {
       const { timezone, weather } = data;
-      const { flag, isoLanguageCode } = countriesMocked.find((mock) => mock.name === data.country);
+      const { flag } = countriesMocked.find((mock) => mock.name === data.country);
       const { currencyName } = currenciesMocked.find((mock) => mock.countryName === data.country);
       const valueConverted = valueConversion * data.exchange;
-      const date = moment().tz(timezone.tz).locale(isoLanguageCode);
+      const date = moment().utcOffset(parseInt(timezone.gmt, 10)).format('DD/MM/YYYY HH:mm:ss');
 
       const country = new Country(
         data.country,
