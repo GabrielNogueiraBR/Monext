@@ -88,8 +88,7 @@ class CountriesService {
         temp_f: weather.temp_f,
       };
       aux.timezone = {
-        // gambis - for America / Mexico_City ", note the double quotes, this is coming from the API and breaks our flow
-        tz: timezoneData.timezone.replace('"', ''),
+        tz: timezoneData.timezone,
         gmt: timezoneData.gmt_offset,
       };
 

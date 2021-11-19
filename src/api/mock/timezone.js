@@ -27,7 +27,7 @@ const timezoneMocked = [
     countryName: 'Italy',
     capital: 'Rome',
     timezone: 'Europe/Rome',
-    gmt_offset: '+2',
+    gmt_offset: '+1',
   },
   {
     countryName: 'Japan',
@@ -38,8 +38,8 @@ const timezoneMocked = [
   {
     countryName: 'Mexico',
     capital: 'Mexico City',
-    timezone: 'America/Mexico_City"',
-    gmt_offset: '-5',
+    timezone: 'America/Mexico_City',
+    gmt_offset: '-6',
   },
   {
     countryName: 'Russia',
@@ -51,13 +51,13 @@ const timezoneMocked = [
     countryName: 'United Kingdom',
     capital: 'London',
     timezone: 'Europe/London',
-    gmt_offset: '+1',
+    gmt_offset: '+0',
   },
   {
     countryName: 'United States',
     capital: 'Washington',
     timezone: 'America/New_York',
-    gmt_offset: '-4',
+    gmt_offset: '-5',
   },
 ];
 
