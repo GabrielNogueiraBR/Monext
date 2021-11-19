@@ -15,7 +15,7 @@ const timezoneMocked = [
     countryName: 'Canada',
     capital: 'Ottawa',
     timezone: 'America/Toronto',
-    gmt_offset: '-4',
+    gmt_offset: '-5',
   },
   {
     countryName: 'China',
