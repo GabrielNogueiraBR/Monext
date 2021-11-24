@@ -2,7 +2,7 @@ const { io } = require('../../http');
 
 const countryPageMock = require('../mock/country-page');
 
-// Create an list of countries by default
+// Create an list of countries by default in mock
 let listCountries = countryPageMock;
 
 // Create an list of sockets by type
@@ -22,13 +22,18 @@ io.of('/home').on('connection', (socket) => {
   // Add connection to list of sockets
   socketsNamespace.push(socket.id);
 
+  // When a form send an update of countries
   socket.on('updateCountries', (countries) => {
     listCountries = countries; // Update list with User options
 
-    io.of('country').emit('updateCountryConfig', listCountries); // Update all country-page by list
+    // Update all country-page by the new list of countries using their namespace
+    io.of('country').emit('updateCountryConfig', listCountries);
 
+    // Message on log for debbug
     console.log('countries mounted 😎: ');
-    if (Array.isArray(listCountries)) { listCountries.map((e) => console.log(`${listCountries.indexOf(e)} - ${e.name}`)); }
+    if (Array.isArray(listCountries)) {
+      listCountries.map((e) => console.log(`${listCountries.indexOf(e)} - ${e.name}`));
+    }
   });
 
   // Remove socket from list of sockets during disconnecting
@@ -44,15 +49,15 @@ io.of('country').on('connection', (socket) => {
   // Add connection to list of sockets
   socketsNamespace.push(socket.id);
 
-  // Declare offSet of instance page
+  // Declare offSet of instance page by its identifier on list
   const offSet = socketsNamespace.indexOf(socket.id);
-  // console.log(`offSet: ${offSet}`);
-  // console.log(`offSetController: ${offSetController}`);
 
-  // Send country information
+  // Send data for new page of countries with offset and a list of countries
   socket.emit('inicializeCountryConfig', offSet + offSetController, listCountries);
 
+  // When all pages complete a transition animation of change country
   socket.on('transitionCompleted', () => {
+    // Emit an event for controller, enabling the button of offset
     io.of('controller').emit('transitionCompleted');
   });
 });
@@ -64,15 +69,18 @@ io.of('controller').on('connection', (socket) => {
   // Add connection to list of sockets
   socketsNamespace.push(socket.id);
 
-  // Event for change offset
+  // When controller send a event of change on offset
   socket.on('sendOffSetController', (value) => {
+    // Emit an event for update countries on pages slides
     io.of('country').emit('updateOffSetController', value);
 
+    // Update offset of controller
     offSetController += value;
   });
 
-  // Remove socket from list of sockets during disconnecting
+  // When a socket is disconnecting
   socket.on('disconnecting', () => {
+    // Remove socket from list of sockets during disconnecting
     socketsNamespace.pop(socket.id);
   });
 });
