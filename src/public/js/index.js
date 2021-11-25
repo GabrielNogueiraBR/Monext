@@ -8,6 +8,12 @@ const socket = io(`${url}/home`);
 
 // ================ EVENTS ================
 
+/**
+ * Remove the mask that the frontend puts to suit the currency selected by the user in forms,
+ * because it is only necessary to send numbers to the API.
+ * @param {string} valueConversion
+ * @returns Value conversion withou mask.
+ */
 function removeMask(valueConversion) {
   const withoutSymbol = valueConversion.split(' ')[1];
   const withoutPunctuation = withoutSymbol.replace(/[,.]/g, '');

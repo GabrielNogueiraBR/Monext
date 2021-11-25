@@ -2,6 +2,11 @@
 const url = `${window.location.protocol}//${window.location.hostname}:${window.location.port}`;
 const socket = io(`${url}/country`);
 
+/**
+ * Variables to control the offset of the page (instance),
+ * offset of controller, the country what is showing now and
+ * a list of all countries on application.
+ */
 let offSetInstance;
 let offSetController = 0;
 let countryInstance;
@@ -41,6 +46,17 @@ function calculateOffSet(value) {
   return value;
 }
 
+/**
+ * This function is responsible for verify if the color dominant
+ * on the country's flag is like to white color.If the domintant color
+ * is nearby to white color, we return false. In this case, we consider
+ * RBG(190,190,190) as white for more accuracy.
+ *
+ * @param {Object} swatch Array with 3 items representing RBG(a,b,c).
+ *
+ * @author Raul Ryan
+ * @returns {boolean} return true or false if the color is near white color or not.
+ */
 function whiteSwatch(swatch) {
   return (swatch[0] > 190 && swatch[1] > 190 && swatch[2] > 190);
 }
@@ -77,7 +93,8 @@ function displayCountry(offSet, countries) {
   timezone.innerHTML = `GMT ${countryInstance.gmt}`;
   capital.innerHTML = `${countryInstance.temperature} °C ${countryInstance.capital}`;
 
-  // Using the library to get the dominant color of the country's flag
+  // Using the library Color Thief to get the dominant color of the country's flag
+  // Repository of the library -> (https://github.com/lokesh/color-thief)
   const colorThief = new ColorThief();
   const img = new Image();
   img.src = countryInstance.flag;
@@ -100,13 +117,16 @@ function displayCountry(offSet, countries) {
    * @author Raul Ryan
    */
   function setBackgroudColorFade() {
+    // getting the dominant color using the lib Color Thief
     let dominantColor = colorThief.getColor(img);
+    // getting the palette color of country's flag using the lib Color Thief
     let palette = colorThief.getPalette(img);
 
+    // Filtering the palette to find all colors different to white
     palette = palette.filter((swatch) => !whiteSwatch(swatch));
 
     // eslint-disable-next-line prefer-destructuring
-    if (whiteSwatch(dominantColor)) dominantColor = palette[0];
+    if (whiteSwatch(dominantColor)) dominantColor = palette[0]; // when dominant color is near white
 
     // eslint-disable-next-line max-len
     countryContainer.style.background = `linear-gradient(to top,rgb(${dominantColor[0]},${dominantColor[1]},${dominantColor[2]}) 0%, #fff 80%)`;
@@ -131,49 +151,63 @@ function inicializeCountryConfig(offSet, countries) {
 
 // ================ SOCKET ================
 
+// When the socket listen an event to initialize a country config on the page
 socket.on('inicializeCountryConfig', (offSet, countries) => inicializeCountryConfig(offSet, countries));
 
+// When the socket listen an event to update all countries information
 socket.on('updateCountryConfig', (countries) => {
+  // update countries information
   listCountries = countries;
+  // display on the screen the new configuration
   displayCountry(offSetInstance, countries);
 });
 
+// When socket listen an event to update the value of offset of controller
 socket.on('updateOffSetController', (value) => {
+  // Elements HTML
   const infoContainer = document.getElementById('info-container');
   const countryContainer = document.getElementById('country-container');
 
-  // choosing the movement
+  // choosing the movement based on past value
   switch (value) {
     case Direction.BIG_LEFT:
-      // move big left
+      // adding to the elements the class responsible for make animation of transition
       infoContainer.classList.add('slideOutBigRight');
       countryContainer.classList.add('backgroundTransition');
       break;
     case Direction.LEFT:
-      // move left
+      // adding to the elements the class responsible for make animation of transition
       infoContainer.classList.add('slideOutRight');
       countryContainer.classList.add('backgroundTransition');
       break;
     case Direction.RIGHT:
-      // move right
+      // adding to the elements the class responsible for make animation of transition
       infoContainer.classList.add('slideOutLeft');
       countryContainer.classList.add('backgroundTransition');
       break;
     case Direction.BIG_RIGHT:
-      // move big right
+      // adding to the elements the class responsible for make animation of transition
       infoContainer.classList.add('slideOutBigLeft');
       countryContainer.classList.add('backgroundTransition');
       break;
     default:
-      // move to home
+      // do nothing
       break;
   }
 
+  /**
+   * This setTimeout is used to change value just after the animation
+   * is playing.
+   */
   setTimeout(() => {
     offSetController += calculateOffSet(value);
     displayCountry(offSetController + offSetInstance, listCountries);
   }, 500);
 
+  /**
+   * This setTimeout is used to remove from elements HTML the
+   * animation of transition after the time past.
+   */
   setTimeout(() => {
     infoContainer.classList.remove('slideOutRight');
     infoContainer.classList.remove('slideOutLeft');
