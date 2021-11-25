@@ -12,7 +12,7 @@
  * @param {string} capital Offset to be send capital country.
  *
  * @author Gabriel Perin
- **/
+ */
 class Country {
   constructor(name, capital, currencyAcronym, currencyName, exchange, flag, date, gmt, temperature) {
     this.flag = flag;
