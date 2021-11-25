@@ -4,6 +4,10 @@
 const bgImageArray = [
   'germany.jpeg',
   'brazil.jpg',
+  'mexico.jpg',
+  'china.jpg',
+  'italy.jpg',
+  'usa.jpg',
 ];
 
 const base = '../assets/images/bg-images/';
