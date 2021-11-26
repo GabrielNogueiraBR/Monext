@@ -28,9 +28,8 @@ body{
 }
 
 .form-container {
-   width: 380px;
-   height: 50%;
-   max-height: 450px;
+   width: 420px;
+   min-height: 40%;
 
    margin: 0 50px;
    padding:20px 30px;
@@ -38,6 +37,7 @@ body{
    display: flex;
    flex-direction: column;
    gap: 8px;
+   justify-content: space-between;
    
    position: relative;
    background-color: #fff;
@@ -59,7 +59,7 @@ body{
 }
 
 .monext-logo img{
-   width: 90%;
+   width: 95%;
 }
 
 select{
@@ -132,3 +132,70 @@ select option:checked {
    background-color: #e6e6e6 !important; /* for IE */
    color: #ff0d82 !important;
 }
+
+.loader-container {
+   display: none;
+   position: absolute;
+   top: 80%;
+   left: 50%;
+   text-align: center;
+   color: #ff0b85;
+   transform: translate(-50%, -50%);
+   width: 130px;
+   height: 100px;
+   border-radius: 10px;
+}
+
+.loader-container h4 {
+   margin: 5px;
+}
+
+.loader {
+   position: absolute;
+   color: #ff0b85;
+   top: 60%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   width: 60px;
+   height: 60px;
+   background: linear-gradient(to bottom right, #ff0b85e0 50.42%, #ff9939e0 100%);
+   border-radius: 50%;
+}
+
+.loader:after {
+   content: '';
+   position: absolute;
+   border-radius: 50%;
+   top: 50%;
+   left: 50%;
+   border: 0px solid white;
+   transform: translate(-50%, -50%);
+   animation: loading 1000ms ease-out forwards infinite;
+}
+ 
+ @keyframes loading {
+   0% {
+     border: 0px solid white;
+   }
+   
+   20% {
+     border: 8px solid white;
+     width: 0%;
+     height: 0%;
+   }
+   
+   100% {
+     border: 8px solid white;
+     width: 100%;
+     height: 100%;
+   }
+ }
+
+ @media screen and (max-height: 611px){
+    .loader{
+       display: none;
+    }
+    .loader-container {
+       top: 100%;
+    }
+ }

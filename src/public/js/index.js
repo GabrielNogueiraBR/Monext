@@ -24,8 +24,21 @@ function removeMask(valueConversion) {
   return valueFormatted;
 }
 
+/**
+ * Function that displays loading and hides form fields
+ *
+ * @author Raul Ryan
+ */
+function showLoading() {
+  document.querySelector('.loader-container').style.display = 'block';
+  document.querySelector('.form-content').style.display = 'none';
+  document.querySelector('#btn-confirm').style.display = 'none';
+}
+
 // Add event to button confirm
 document.querySelector('#btn-confirm').addEventListener('click', (e) => {
+  showLoading();
+
   e.preventDefault();
 
   (async () => {
