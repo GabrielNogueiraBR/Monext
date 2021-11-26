@@ -56,7 +56,6 @@ class FetchDataService {
   async fetchCountriesCapital(countriesSet) {
     const url = `${this.getPostmanApiUrl}/countries/capital`;
     const response = await this.axiosGet(url);
-    console.log(response.data);
     return this.filterCountries(countriesSet, response.data);
   }
 
