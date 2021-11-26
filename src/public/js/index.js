@@ -18,7 +18,11 @@ function removeMask(valueConversion) {
   return valueFormatted;
 }
 
-// Function that displays loading and hides form fields
+/**
+ * Function that displays loading and hides form fields
+ *
+ * @author Raul Ryan
+ */
 function showLoading() {
   document.querySelector('.loader-container').style.display = 'block';
   document.querySelector('.form-content').style.display = 'none';
