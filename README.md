@@ -61,7 +61,7 @@ server is running on *:3000
 5. Starting the project with DOCKER</br>
 ⚠️Requirements: 
      - Need install [Docker](https://docs.docker.com/get-docker/) in your machine.</br>
-     - **your port in .env file nmust be 3000**
+     - **your port in .env file must be 3000**
 ```
 npm run start:docker
 server is running on *:3000
