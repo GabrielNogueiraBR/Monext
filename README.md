@@ -52,9 +52,18 @@ WEATHER_API_KEY=
 GET_POSTMAN_API_URL=https://countriesnow.space/api/v0.1
 ```
 
-4. Starting the project
+4. Starting the project with NPM
 ```
 npm start
+server is running on *:3000
+```
+
+5. Starting the project with DOCKER</br>
+⚠️Requirements: 
+     - Need install [Docker](https://docs.docker.com/get-docker/) in your machine.</br>
+     - **your port in .env file need to be 3000**
+```
+npm run start:docker
 server is running on *:3000
 ```
 
