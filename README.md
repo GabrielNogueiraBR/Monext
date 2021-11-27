@@ -108,4 +108,4 @@ On this screen, the user has access to the screen controller, with the commands 
 </div>
 
 ## 📃 License
-This software is under the [MIT License](https://github.com/GabrielNogueiraBR/Monext/blob/docs/LICENSE).
+This software is under the [MIT License](https://github.com/GabrielNogueiraBR/Monext/blob/main/LICENSE).
