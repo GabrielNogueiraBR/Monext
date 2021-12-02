@@ -8,7 +8,9 @@ body{
    display: flex;
    align-items: center;
    justify-content: center;
-   height: 100vh;
+   position: fixed;
+   width: 100%;
+   height: 100%;
 
    background-color: #fff;
    background-position: center;
@@ -43,6 +45,7 @@ body{
    background-color: #fff;
    border: 5px solid transparent;
    border-radius: 16px;
+   align-items: center;
 }
 
 .form-content{
@@ -50,6 +53,11 @@ body{
    height: 100%;
    flex-direction: column;
    justify-content:center;
+   width: 100%;
+}
+
+.form-content #conversion-value-label{
+   margin-top: 2%;
 }
 
 .monext-logo{
@@ -95,6 +103,7 @@ input:focus{
    display: flex;
    justify-content: end;
    min-height: 30px;
+   width: 100%;
 }
   
 button {
@@ -191,11 +200,30 @@ select option:checked {
    }
  }
 
- @media screen and (max-height: 611px){
-    .loader{
-       display: none;
-    }
-    .loader-container {
-       top: 100%;
-    }
- }
+@media screen and (max-height: 611px){
+   .loader{
+      display: none;
+   }
+   .loader-container {
+      top: 100%;
+   }
+}
+
+@media screen and (max-height: 370px){
+   .monext-logo {
+      width: 60%;
+   }
+
+   .form-content #conversion-value-label{
+      margin-top: 2%;
+   }
+
+   .form-container{
+      padding: 10px 20px;
+   }
+
+   select, input{
+      height:22px;
+   }
+
+}
