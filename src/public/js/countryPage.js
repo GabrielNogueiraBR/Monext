@@ -145,6 +145,7 @@ function displayCountry(offSet, countries) {
 function inicializeCountryConfig(offSet, countries) {
   listCountries = countries;
   offSetInstance = 0;
+  offSetController = 0;
   offSetInstance = calculateOffSet(offSet);
   displayCountry(offSetInstance, listCountries);
 }
