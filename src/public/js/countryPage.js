@@ -160,7 +160,7 @@ socket.on('updateCountryConfig', (countries) => {
   // update countries information
   listCountries = countries;
   // display on the screen the new configuration
-  displayCountry(offSetInstance, countries);
+  displayCountry(offSetInstance + offSetController, countries);
 });
 
 // When socket listen an event to update the value of offset of controller
