@@ -127,9 +127,8 @@ function displayCountry(offSet, countries) {
 
     // eslint-disable-next-line prefer-destructuring
     if (whiteSwatch(dominantColor)) dominantColor = palette[0]; // when dominant color is near white
-
     // eslint-disable-next-line max-len
-    countryContainer.style.background = `linear-gradient(to top,rgb(${dominantColor[0]},${dominantColor[1]},${dominantColor[2]}) 0%, #fff 80%)`;
+    countryContainer.style.background = `rgb(${dominantColor[0] + 25},${dominantColor[1] + 25},${dominantColor[2] + 25})`;
   }
 }
 
@@ -174,22 +173,18 @@ socket.on('updateOffSetController', (value) => {
     case Direction.BIG_LEFT:
       // adding to the elements the class responsible for make animation of transition
       infoContainer.classList.add('slideOutBigRight');
-      countryContainer.classList.add('backgroundTransition');
       break;
     case Direction.LEFT:
       // adding to the elements the class responsible for make animation of transition
       infoContainer.classList.add('slideOutRight');
-      countryContainer.classList.add('backgroundTransition');
       break;
     case Direction.RIGHT:
       // adding to the elements the class responsible for make animation of transition
       infoContainer.classList.add('slideOutLeft');
-      countryContainer.classList.add('backgroundTransition');
       break;
     case Direction.BIG_RIGHT:
       // adding to the elements the class responsible for make animation of transition
       infoContainer.classList.add('slideOutBigLeft');
-      countryContainer.classList.add('backgroundTransition');
       break;
     default:
       // do nothing
@@ -214,7 +209,6 @@ socket.on('updateOffSetController', (value) => {
     infoContainer.classList.remove('slideOutLeft');
     infoContainer.classList.remove('slideOutBigRight');
     infoContainer.classList.remove('slideOutBigLeft');
-    countryContainer.classList.remove('backgroundTransition');
     socket.emit('transitionCompleted');
   }, 1200);
 });
