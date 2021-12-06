@@ -30,7 +30,6 @@ let isInTransition = false;
  */
 async function sendingOffSet(value) {
   // If another event already was sent then we return function to await
-  console.log(sockets.country.connections);
   if (isInTransition || sockets.country.connections === 0) {
     if (sockets.country.connections === 0) {
       isInTransition = false;
