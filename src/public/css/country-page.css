@@ -9,7 +9,7 @@
    position: fixed;
    width: 100%;
    height: 100%;
-   background: linear-gradient(to top,#73af00 0%, #fff 80%);
+   transition: background 1.2s;
 }
 
 .info-container {
@@ -128,22 +128,6 @@
       transform: translateX(300px);
    }
    100%{
-      opacity: 1;
-   }
-}
-
-.backgroundTransition{
-   animation: backgroundTransition 1s forwards;
-}
-
-@keyframes backgroundTransition {
-   33% {
-      opacity: 0;
-   }
-   66% {
-      opacity: 0;
-   }
-   100% {
       opacity: 1;
    }
 }
