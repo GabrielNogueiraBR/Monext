@@ -21,7 +21,8 @@ Then, it will look really similar to Liquid Galaxy. It will have a controller, a
 # 👀 App Preview (https://monext.herokuapp.com/home)
 <a href="https://www.figma.com/file/huI74oLZX9039WjZddKyIg/?node-id=103%3A2"><img alt="Qries" src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"></a> - is used to prototype the application screens (click on FIGMA to view project prototype).
 </br>
-![monext_preview](https://user-images.githubusercontent.com/69533533/141710933-5b845c99-5ef7-4c40-aa08-9b30e3acb704.gif)
+![monext_preview](https://user-images.githubusercontent.com/69533533/144947915-0663f4a1-5b01-4938-9c55-51621259e510.gif)
+
 
 ## 🖥️ Requirements
 1. Make sure **Node JS** is installed on your machine by running:
